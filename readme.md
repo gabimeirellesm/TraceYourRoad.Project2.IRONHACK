@@ -33,14 +33,14 @@ A platform where the users can register the countries where they have traveled t
 | `GET`      | `/login`                           | Renders `login` form view.                                               |                                                          |
 | `POST`     | `/login`                           | Sends Login form data to the server.                                     | { email, password }                                      |
 | `GET`      | `/signup`                          | Renders `signup` form view.                                              |                                                          |
-| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB.             | { email, password }                                      |
-| `GET`      | `/private/edit-profile`            | Private route. Renders `edit-profile` form view.                         |                                                          |
-| `PUT`      | `/private/edit-profile`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl] } |
-| `GET`      | `/private/favorites`               | Private route. Render the `favorites` view.                              |                                                          |
-| `POST`     | `/private/favorites/`              | Private route. Adds a new favorite for the current user.                 | { name, cuisine, city, }                                 |
-| `DELETE`   | `/private/favorites/:restaurantId` | Private route. Deletes the existing favorite from the current user.      |                                                          |
-| `GET`      | `/restaurants`                     | Renders `restaurant-list` view.                                          |                                                          |
-| `GET`      | `/restaurants/details/:id`         | Renders `restaurant-details` view for the particular restaurant.         |                                                          |
+| `POST`     | `/signup`                          | Sends Sign Up info to the server and creates user in the DB.             | { first name, last name, email, password, country of birth, residence }                                      |
+| `GET`      | `/private/edit-user`            | Private route. Renders `edit-user` form view.                         |                                                          |
+| `POST`      | `/private/edit-user`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl], country of birth, residence} |
+| `GET`      | `/private/profile`               | Private route. Render the `countries list` view.                              |                                                          |
+| `POST`     | `/private/profile`              | Private route. Adds a new country for the current user.                 | { number of countries, percentage visited, countries list, user information }                                 |
+| `GET`   | `/private/countries/:list-details` | Private route. Renders the existing country details from the current user.      |                                                          |
+| `POST`     | `/private/countries/:list-details`              | Private route. the existing country details from the current user.                 | { country, flag, cities, notes, favorites, photos, dates}                                 |                          |                         |       |                                                                                                                                     
+
 
 ## Models
 
@@ -48,19 +48,28 @@ User model
 
 ```javascript
 {
-  name: String,
+  firstName: String,
+  lastName: String,
   email: String,
   password: String,
-  favorites: [FavoriteId],
+  photo: String,
+  countryOfBirth: String,
+  residence: String
 }
 
 ```
 
-Favorites model
+Countries model
 
 ```javascript
 {
-  placeId: String,
+coutryName: String,
+flagCountry: String,
+date: Number,
+photos: String,
+notes: String,
+favorites: String,
+cities: String
 }
 
 ```
@@ -68,7 +77,9 @@ Favorites model
 <br>
 
 ## API's
+https://pub.dev/documentation/countries_world_map/latest/
 
+https://github.com/lennertVanSever/graphcountries
 <br>
 
 ## Packages
@@ -87,7 +98,7 @@ Favorites model
 
 The url to your repository and to your deployed project
 
-[Repository Link]()
+[Repository Link](https://github.com/gabimeirellesm/Project2)
 
 [Deploy Link]()
 
@@ -101,6 +112,6 @@ The url to your presentation slides
 
 ### Contributors
 
-FirstName LastName - [`<github-username>`](https://github.com/person1-username) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/person1-username)
+Gabriela Meirelles - [`<github-username>`](https://github.com/gabimeirellesm) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/gabriela-meirelles-martins/)
 
-FirstName LastName - [`<github-username>`](https://github.com/person2-username) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/person2-username)
+Nathalie Cazemajou - [`<github-username>`](https://github.com/natcaze) - [`<linkedin-profile-link>`](https://www.linkedin.com/in/nathalie-cazemajou/)
