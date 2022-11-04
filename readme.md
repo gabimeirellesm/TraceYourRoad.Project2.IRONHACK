@@ -38,8 +38,9 @@ A platform where the users can register the countries where they have traveled t
 | `POST`      | `/private/edit-user`            | Private route. Sends edit-profile info to server and updates user in DB. | { email, password, [firstName], [lastName], [imageUrl], country of birth, residence} |
 | `GET`      | `/private/profile`               | Private route. Render the `countries list` view.                              |                                                          |
 | `POST`     | `/private/profile`              | Private route. Adds a new country for the current user.                 | { number of countries, percentage visited, countries list, user information }                                 |
-| `GET`   | `/private/countries/:list-details` | Private route. Renders the existing country details from the current user.      |                                                          |
-| `POST`     | `/private/countries/:list-details`              | Private route. the existing country details from the current user.                 | { country, flag, cities, notes, favorites, photos, dates}                                 |                          |                         |       |                                                                                                                                     
+| `GET`   | `/private/countries/:list-details` | Private route. Renders the existing country details from the current user.      |    
+| `POST`     | `/private/countries/:list-details`              | Private route. Adds the existing country details from the current user.                 | { country, flag, cities, notes, favorites, photos, dates}                                                       |
+| `DELETE`     | `/private/countries/:list-details`              | Private route. Deletes the existing country details from the current user.                 | { country, flag, cities, notes, favorites, photos, dates}                                 |                          |                         |       |                                                                                                                                     
 
 
 ## Models
@@ -54,7 +55,8 @@ User model
   password: String,
   photo: String,
   countryOfBirth: String,
-  residence: String
+  residence: String,
+  visitedCountries: [CountriesId]
 }
 
 ```
@@ -63,13 +65,14 @@ Countries model
 
 ```javascript
 {
-coutryName: String,
+countryName: String,
 flagCountry: String,
-date: Number,
-photos: String,
-notes: String,
-favorites: String,
-cities: String
+arrivalDate: Date,
+departureDate: Date,
+photos: [String],
+notes: [String],
+favorites: [String],
+cities: [String]
 }
 
 ```
