@@ -1,3 +1,21 @@
-<h2>Profile</h2>
+{{! { number of countries, percentage visited, countries list, user information } }}
 
-{{!-- { number of countries, percentage visited, countries list, user information } --}}
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg bg-light">
+      <div class="container-fluid">
+        <h2>Welcome {{firstName}} {{lastName}}</h2>
+      </div>
+
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/edit-profile">Edit Profile</a>
+      </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Logout</a>
+      </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/profile">Add Country</a>
+      </div>
+    </nav>
+  </div>
+</nav>
