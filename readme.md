@@ -80,9 +80,7 @@ cities: [String]
 <br>
 
 ## API's
-https://pub.dev/documentation/countries_world_map/latest/
-
-https://github.com/lennertVanSever/graphcountries
+https://restcountries.com/v3.1/all
 <br>
 
 ## Packages

@@ -108,7 +108,6 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
 });
 
 
-
 /* _____________________________________ LOG OUT _____________________________________________ */
 
 router.get("/logout", isLoggedIn, (req, res) => {
@@ -164,12 +163,3 @@ router.get("/", (req, res, next) => {
 
 /* _____________________________________ COUNTRIES _____________________________________________ */
 
-router.get("/countries", async (req, res, next) => {
-  try {
-      const getCountries = await Countries.find();
-      res.render("celebrities/celebrities", {getCountries})
-  } catch(error){
-      console.log(error);
-      next(error);
-  }
-}) 
