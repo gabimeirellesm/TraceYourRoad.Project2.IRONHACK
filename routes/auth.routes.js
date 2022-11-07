@@ -12,22 +12,31 @@ router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post('/signup', async (req, res, next) => {
-  const { firstName, lastName, countryOfBirth, residence, email, password } = req.body;
+router.post("/signup", async (req, res, next) => {
+  const { firstName, lastName, countryOfBirth, residence, email, password } =
+    req.body;
 
   try {
-    if (!firstName || !lastName ||!countryOfBirth || !residence || !email || !password) {
-      res.render('auth/signup', {
-        errorMessage: 'All the fields are mandatory. Please input a username, email and passowrd',
+    if (
+      !firstName ||
+      !lastName ||
+      !countryOfBirth ||
+      !residence ||
+      !email ||
+      !password
+    ) {
+      res.render("auth/signup", {
+        errorMessage:
+          "All the fields are mandatory. Please input a username, email and passowrd",
       });
       return;
     }
 
     const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
     if (!regex.test(password)) {
-      res.status(500).render('auth/signup', {
+      res.status(500).render("auth/signup", {
         errorMessage:
-          'Invalid password, password needs to have at least 6 characters and include an uppercase and lowercase character',
+          "Invalid password, password needs to have at least 6 characters and include an uppercase and lowercase character",
       });
     }
 
@@ -35,72 +44,78 @@ router.post('/signup', async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const createdUser = await User.create({ firstName, lastName, countryOfBirth, residence, email, password: hashedPassword });
+    const createdUser = await User.create({
+      firstName,
+      lastName,
+      countryOfBirth,
+      residence,
+      email,
+      password: hashedPassword,
+    });
 
-    res.redirect('/');
+    res.redirect("/");
   } catch (error) {
     console.log(error);
     if (error instanceof mongoose.Error.ValidationError) {
-      res.status(500).render('auth/signup', { errorMessage: error.message });
+      res.status(500).render("auth/signup", { errorMessage: error.message });
     } else if (error.code === 11000) {
-      res.status(500).render('auth/signup', { errorMessage: ' Username or email already exists' });
+      res.status(500).render("auth/signup", {
+        errorMessage: " Username or email already exists",
+      });
     }
 
     next(error);
   }
 });
 
-
 /* _____________________________________ LOGIN _____________________________________________ */
 
-/* router.get("/login", isLoggedOut, (req, res) => {
+router.get("/login", isLoggedOut, (req, res) => {
   res.render("auth/login");
 });
 
-router.post("/login", isLoggedOut, (req, res, next) => {
-  const { username, email, password } = req.body;
-  if (username === "" || email === "" || password === "") {
-    res.status(400).render("auth/login", {
-      errorMessage:
-        "All fields are mandatory. Please provide username, email and password.",
-    });
+//passwrod Lua: 12345Aa.
+router.post("/login", isLoggedOut, async (req, res, next) => {
+  const { email, password } = req.body;
+  try {
+    if (!password || !email) {
+      res.render("auth/login", {
+        errorMessage:
+          "All the fields are mandatory. Please input an email and passoword",
+      });
+      return;
+    }
 
-    return;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      res.render("auth/login", {
+        errorMessage: "Email not found",
+      });
+      return;
+    } else if (bcrypt.compareSync(password, user.password)) {
+      //This will compare the plain text password from the input with the hashed password we stored in the database
+
+      req.session.user = user;
+      res.redirect("/profile");
+    } else {
+      //If the user exists BUT the password is wrong
+      res.render("auth/login", {
+        errorMessage: "Wrong password.",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    next(error);
   }
-  if (password.length < 6) {
-    return res.status(400).render("auth/login", {
-      errorMessage: "Your password needs to be at least 6 characters long.",
-    });
-  }
-  User.findOne({ email })
-    .then((user) => {
-      if (!user) {
-        res
-          .status(400)
-          .render("auth/login", { errorMessage: "Wrong credentials." });
-        return;
-      }
+});
 
-      bcrypt
-        .compare(password, user.password)
-        .then((isSamePassword) => {
-          if (!isSamePassword) {
-            res
-              .status(400)
-              .render("auth/login", { errorMessage: "Wrong credentials." });
-            return;
-          }
+router.get("/profile", isLoggedIn, (req, res) => {
+  const user = req.session.user;
+  console.log(user);
 
-          req.session.currentUser = user.toObject();
-
-          delete req.session.currentUser.password;
-
-          res.redirect("/");
-        })
-        .catch((err) => next(err)); 
-    })
-    .catch((err) => next(err));
-}); */
+  res.render("auth/profile", user);
+});
 
 /* _____________________________________ LOG OUT _____________________________________________ */
 
@@ -116,6 +131,3 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 });
  */
 module.exports = router;
-
-
-
