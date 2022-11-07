@@ -2,20 +2,37 @@
   <h2>Sign Up</h2>
   <form action="/auth/signup" method="POST">
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
+    <label>
+      First Name
+      <input type="text" name="firstName" placeholder="First Name" />
     </label>
 
-    <label> Email
+    <label>
+      Last Name
+      <input type="text" name="lastName" placeholder="Last Name" />
+    </label>
+
+    <label>
+      Email
       <input type="email" name="email" placeholder="Your email" />
     </label>
 
-    <label> Password
+    <label>
+      Password
       <input type="password" name="password" placeholder="Your password" />
     </label>
 
-    <button type="submit">Sign Up</button>
+    <label>
+      Country of Birth
+      <input type="text" name="countryOfBirth" placeholder="Country of Birth" />
+    </label>
 
+    <label>
+      Residence
+      <input type="text" name="residence" placeholder="Residence" />
+    </label>
+
+    <button type="submit">Sign Up</button>
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
