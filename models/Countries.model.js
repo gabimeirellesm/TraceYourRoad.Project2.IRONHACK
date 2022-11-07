@@ -2,13 +2,14 @@ const { Schema, model } = require("mongoose");
 
 const countriesSchema = new Schema(
   {
-    coutryName: String,
+    countryName: String,
     flagCountry: String,
     date: Number,
     photos: String,
     notes: String,
     favorites: String,
     cities: String,
+
   },
   {
     timestamps: true,

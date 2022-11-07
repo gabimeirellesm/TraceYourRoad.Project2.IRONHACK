@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
 const saltRounds = 10;
 const User = require("../models/User.model");
+const axios = require("axios");
+const Countries = require("../models/Countries.model");
 
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
@@ -92,9 +94,9 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       res.render("auth/login")
     } else if (bcrypt.compareSync(password, user.password)) {
       req.session.user = user;
-      res.redirect("profile");
+      res.redirect("/auth/profile");
     } else {
-      res.redirect('profile')
+      res.redirect('/auth/login')
       /* res.render("auth/login", {
         errorMessage: "Wrong password.",
       }); */
@@ -105,12 +107,7 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
   }
 });
 
-router.get("/profile", (req, res) => {
-  const user = req.session.user;
-  console.log(user);
 
-  res.render("auth/profile", user);
-});
 
 /* _____________________________________ LOG OUT _____________________________________________ */
 
@@ -130,3 +127,49 @@ module.exports = router;
 
 /* _____________________________________ PROFILE _____________________________________________ */
 
+
+
+router.get("/profile", (req, res) => {
+  const user = req.session.user;
+
+
+  axios.get("https://restcountries.com/v3.1/all")
+    .then(response => {
+      res.render("auth/profile", {user, countries: response.data});
+    })
+
+});
+
+router.post("/create-card", (req, res, next) => {
+   axios.get(`https://restcountries.com/v3.1/name/${req.body.countries}`)
+    .then(response => {
+      console.log(response.data);
+      Countries.create({countryName: response.data[0].name.common, flagCountry: response.data[0].flags.png})  
+      res.redirect("/auth/profile");
+    })
+})
+
+
+/* _____________________________________ API _____________________________________________ */
+ 
+router.get("/", (req, res, next) => {
+
+  axios.get("https://restcountries.com/v3.1/all")
+    .then(response => {
+      console.log(response.name.official);
+      res.render("profile", { result: response.name.official});
+    })
+
+});
+
+/* _____________________________________ COUNTRIES _____________________________________________ */
+
+router.get("/countries", async (req, res, next) => {
+  try {
+      const getCountries = await Countries.find();
+      res.render("celebrities/celebrities", {getCountries})
+  } catch(error){
+      console.log(error);
+      next(error);
+  }
+}) 
