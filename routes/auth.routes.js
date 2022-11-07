@@ -89,20 +89,15 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      res.render("auth/login", {
-        errorMessage: "Email not found",
-      });
-      return;
+      res.render("auth/login")
     } else if (bcrypt.compareSync(password, user.password)) {
-      //This will compare the plain text password from the input with the hashed password we stored in the database
-
       req.session.user = user;
-      res.redirect("/profile");
+      res.redirect("profile");
     } else {
-      //If the user exists BUT the password is wrong
-      res.render("auth/login", {
+      res.redirect('profile')
+      /* res.render("auth/login", {
         errorMessage: "Wrong password.",
-      });
+      }); */
     }
   } catch (error) {
     console.log(error);
@@ -110,7 +105,7 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
   }
 });
 
-router.get("/profile", isLoggedIn, (req, res) => {
+router.get("/profile", (req, res) => {
   const user = req.session.user;
   console.log(user);
 
@@ -119,15 +114,15 @@ router.get("/profile", isLoggedIn, (req, res) => {
 
 /* _____________________________________ LOG OUT _____________________________________________ */
 
-/* router.get("/logout", isLoggedIn, (req, res) => {
+router.get("/logout", isLoggedIn, (req, res) => {
   req.session.destroy((err) => {
     if (err) {
       res.status(500).render("auth/logout", { errorMessage: err.message });
       return;
     }
 
-    res.redirect("/");
+    res.redirect("login");
   });
 });
- */
+
 module.exports = router;
