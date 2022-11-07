@@ -126,3 +126,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
 });
 
 module.exports = router;
+
+
+/* _____________________________________ PROFILE _____________________________________________ */
+
