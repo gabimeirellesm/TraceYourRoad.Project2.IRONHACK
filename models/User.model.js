@@ -12,6 +12,9 @@ const userSchema = new Schema(
     residence: String,
   },
   {
+    createdCountries: [{ type: Schema.Types.ObjectId, ref: "Countries" }],
+  },
+  {
     // this second object adds extra properties: `createdAt` and `updatedAt`
     timestamps: true,
   }

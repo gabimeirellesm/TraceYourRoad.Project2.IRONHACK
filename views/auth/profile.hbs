@@ -11,6 +11,7 @@
         <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">COLOR YOUR ROAD</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
+
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
@@ -21,28 +22,22 @@
             <a class="nav-link" href="/">Logout</a>
           </li>
           <hr>
+            <button style="color:black" type="submit">Add Country</button>  
+            <hr>
           <li>
             <form action="/auth/create-card" method="post">
             <select name="countries" >
             {{#each countries}}
             <option value="{{name.common}}">{{name.common}}</option>
             {{/each}} 
-          <button style="color: white" type="submit">Add Country</button>       
          </form>
-         </li>
-          <hr>
+         </li> 
+          
+           </ul>
 </nav>
+<br>
 
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <div class="col">
-    <div class="card h-100">
-      <img src="{{!-- BANDEIRA DO PAIS ESCOLHIDO --}}" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{!-- NOME DO PAIS ESCOLHIDO --}}</h5>
-        <p class="card-text"></p>
-      </div>
-      <div class="card-footer">
-        <small class="text-muted">{{!-- DATA QUE VAI VIR DO LIST DETAILS --}}</small>
-      </div>
-    </div>
-  </div>
+
+{{card}}
+  
+

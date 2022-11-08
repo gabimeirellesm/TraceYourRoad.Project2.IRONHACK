@@ -91,12 +91,12 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
     const user = await User.findOne({ email });
 
     if (!user) {
-      res.render("auth/login")
+      res.render("auth/login");
     } else if (bcrypt.compareSync(password, user.password)) {
       req.session.user = user;
       res.redirect("/auth/profile");
     } else {
-      res.redirect('/auth/login')
+      res.redirect("/auth/login");
       /* res.render("auth/login", {
         errorMessage: "Wrong password.",
       }); */
@@ -106,7 +106,6 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
     next(error);
   }
 });
-
 
 /* _____________________________________ LOG OUT _____________________________________________ */
 
@@ -123,43 +122,66 @@ router.get("/logout", isLoggedIn, (req, res) => {
 
 module.exports = router;
 
-
 /* _____________________________________ PROFILE _____________________________________________ */
-
-
 
 router.get("/profile", (req, res) => {
   const user = req.session.user;
 
-
-  axios.get("https://restcountries.com/v3.1/all")
-    .then(response => {
-      res.render("auth/profile", {user, countries: response.data});
-    })
-
+  axios.get("https://restcountries.com/v3.1/all").then((response) => {
+    res.render("auth/profile", { user, countries: response.data });
+  });
 });
 
+//CREATE CARD IN PROFILE
 router.post("/create-card", (req, res, next) => {
-   axios.get(`https://restcountries.com/v3.1/name/${req.body.countries}`)
-    .then(response => {
+  axios
+    .get(`https://restcountries.com/v3.1/name/${req.body.countries}`)
+    .then((response) => {
       console.log(response.data);
-      Countries.create({countryName: response.data[0].name.common, flagCountry: response.data[0].flags.png})  
+      Countries.create({
+        countryName: response.data[0].name.common,
+        flagCountry: response.data[0].flags.png,
+      });
       res.redirect("/auth/profile");
-    })
-})
-
+    });
+});
 
 /* _____________________________________ API _____________________________________________ */
- 
+
 router.get("/", (req, res, next) => {
-
-  axios.get("https://restcountries.com/v3.1/all")
-    .then(response => {
-      console.log(response.name.official);
-      res.render("profile", { result: response.name.official});
-    })
-
+  axios.get("https://restcountries.com/v3.1/all").then((response) => {
+    console.log(response.name.official);
+    res.render("profile", { result: response.name.official });
+  });
 });
 
-/* _____________________________________ COUNTRIES _____________________________________________ */
+/* _____________________________________ EDIT PROFILE _____________________________________________ */
 
+router.get("/edit-profile", (req, res) => {
+  res.render("auth/edit-profile");
+});
+
+router.post("/edit-profile", async (req, res, next) => {
+  const { firstName, lastName, countryOfBirth, residence, photo } = req.body;
+  try {
+    let imageUrl;
+    if (req.file) {
+      imageUrl = req.file.path;
+    } else {
+      imageUrl = currentImage;
+    }
+    await Movie.findByIdAndUpdate({
+      firstName,
+      lastName,
+      countryOfBirth,
+      residence,
+      photo,
+    });
+    res.redirect("auth/edit-profile");
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+/* _____________________________________ EDIT CARDS _____________________________________________ */
