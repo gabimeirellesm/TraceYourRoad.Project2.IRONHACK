@@ -124,12 +124,16 @@ module.exports = router;
 
 /* _____________________________________ PROFILE _____________________________________________ */
 
-router.get("/profile", (req, res) => {
-  const user = req.session.user;
+router.get("/profile", async(req, res) => {
+  const userId = req.session.user._id;
 
-  axios.get("https://restcountries.com/v3.1/all").then((response) => {
-    res.render("auth/profile", { user, countries: response.data });
-  });
+   const response = await axios.get("https://restcountries.com/v3.1/all")
+   const user = await User.findById(userId).populate("createdCountries")
+
+  res.render("auth/profile", { user, countries: response.data });
+
+
+
 });
 
 //CREATE CARD IN PROFILE
@@ -137,14 +141,18 @@ router.post("/create-card", (req, res, next) => {
   axios
     .get(`https://restcountries.com/v3.1/name/${req.body.countries}`)
     .then((response) => {
-      console.log(response.data);
-      Countries.create({
+      return Countries.create({
         countryName: response.data[0].name.common,
-        flagCountry: response.data[0].flags.png,
-      });
-      res.redirect("/auth/profile");
+        flagCountry: response.data[0].flags.png,})
+    })
+      .then((country) => {
+        const userId = req.session.user._id
+       console.log(userId)
+        console.log(country._id) 
+        return User.findByIdAndUpdate(userId, {$push: {createdCountries: country._id}}) 
+      })
+     .then(() =>  res.redirect("/auth/profile"))
     });
-});
 
 /* _____________________________________ API _____________________________________________ */
 

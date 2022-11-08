@@ -10,8 +10,6 @@ const userSchema = new Schema(
     photo: String,
     countryOfBirth: String,
     residence: String,
-  },
-  {
     createdCountries: [{ type: Schema.Types.ObjectId, ref: "Countries" }],
   },
   {

@@ -22,22 +22,34 @@
             <a class="nav-link" href="/">Logout</a>
           </li>
           <hr>
-            <button style="color:black" type="submit">Add Country</button>  
-            <hr>
-          <li>
+      <li>
             <form action="/auth/create-card" method="post">
             <select name="countries" >
             {{#each countries}}
             <option value="{{name.common}}">{{name.common}}</option>
             {{/each}} 
+            </select>
+            <button type="submit">Add Country</button>
+            <hr>
          </form>
-         </li> 
-          
+            </li>
            </ul>
 </nav>
 <br>
 
-
-{{card}}
-  
+{{#each user.createdCountries}}
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card">
+      
+      <img src="..." class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{name.common}}</h5>
+        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+        <hr>
+      <button type="submit">Edit Travel</button>
+      </div>
+    </div>
+  </div>
+{{/each}} 
 
