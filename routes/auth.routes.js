@@ -10,6 +10,9 @@ const Countries = require("../models/Countries.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
+
+/* _____________________________________ SIGN UP _____________________________________________ */
+
 router.get("/signup", isLoggedOut, (req, res, next) => {
   res.render("auth/signup");
 });
@@ -55,7 +58,7 @@ router.post("/signup", async (req, res, next) => {
       password: hashedPassword,
     });
 
-    res.redirect("/");
+    res.redirect("/auth/profile");
   } catch (error) {
     console.log(error);
     if (error instanceof mongoose.Error.ValidationError) {
@@ -213,6 +216,51 @@ router.post('/delete', async (req, res, next) => {
   }
 });
 
-/* _____________________________________ EDIT TRAVEL _____________________________________________ */
+/* _____________________________________ EDIT CARD _____________________________________________ */
 
 
+router.get("/edit-card", async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.render("auth/edit-card", user)
+   } catch (error) {
+    console.log(error);
+    next(error);
+   }
+});
+
+router.post("/edit-card", async (req, res, next) => {
+  const { arrivalDate ,departureDate, notes, favorites, cities /* currentImage */ } = req.body;
+  try {
+/*     let imageUrl;
+    if (req.file) {
+      imageUrl = req.file.path;
+    } else {
+      imageUrl = currentImage;
+    } */
+    const cardId = req.session.user._id
+    await User.findByIdAndUpdate(cardId, {
+      arrivalDate,
+      departureDate,
+      notes,
+      favorites,
+      cities,
+      /* photo */
+    });
+    res.redirect("/auth/edit-card");
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+router.post('/del', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await User.findByIdAndRemove(id);
+    res.redirect('/');
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});

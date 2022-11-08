@@ -4,7 +4,8 @@ const countriesSchema = new Schema(
   {
     countryName: String,
     flagCountry: String,
-    date: Number,
+    arrivalDate: Date,
+    departureDate: Date,
     photos: String,
     notes: String,
     favorites: String,

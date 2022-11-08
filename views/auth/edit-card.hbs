@@ -1,0 +1,23 @@
+  { ,arrivalDate ,departureDate, , ,  /* currentImage */ }
+  
+  <h2>More details</h2>
+  <form action="/auth/edit-profile" method="POST">
+
+    <label>Notes:
+      <input type="notes" name="notes" placeholder="Notes" />
+    </label>
+
+    <label> Trip highlight:
+      <input type="favorites" name="favorites" placeholder="Best of the trip" />
+    </label>
+
+    
+    <label> Cities I have been:
+      <input type="cities" name="cities" placeholder="Visited cities" />
+    </label>
+
+    {{!-- PHOTO --}}
+    
+    <button type="submit" action="/auth/profile" >Update trip</button>
+  </form>
+</div>
