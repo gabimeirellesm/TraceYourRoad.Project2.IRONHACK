@@ -141,9 +141,9 @@ router.post("/create-card", (req, res, next) => {
       return Countries.create({
         countryName: response.data[0].name.common,
         flagCountry: response.data[0].flags.png,
-        capital: response.data[0].capital,
-        /*  currency: response.data[0].currencies.pen.name, */
-        /* language: response.data[0].languages, */
+        capital: response.data[0].capital[0],
+        currency: Object.keys(response.data[0].currencies)[0],
+        language: Object.values(response.data[0].languages),
       });
     })
     .then((country) => {
@@ -168,31 +168,51 @@ router.get("/", (req, res, next) => {
 
 /* _____________________________________ EDIT PROFILE _____________________________________________ */
 
-router.get("/edit-profile", (req, res) => {
-  res.render("auth/edit-profile");
+router.get("/edit-profile", async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.render("auth/edit-profile", user)
+   } catch (error) {
+    console.log(error);
+    next(error);
+   }
 });
 
 router.post("/edit-profile", async (req, res, next) => {
-  const { firstName, lastName, countryOfBirth, residence, photo } = req.body;
+  const { firstName, lastName, countryOfBirth, residence, /* currentImage */ } = req.body;
   try {
-    let imageUrl;
+/*     let imageUrl;
     if (req.file) {
       imageUrl = req.file.path;
     } else {
       imageUrl = currentImage;
-    }
-    await User.findByIdAndUpdate({
+    } */
+    const userId = req.session.user._id
+    await User.findByIdAndUpdate(userId, {
       firstName,
       lastName,
       countryOfBirth,
       residence,
-      photo,
+      /* photo */
     });
-    res.redirect("auth/edit-profile");
+    res.redirect("/auth/edit-profile");
   } catch (error) {
     console.log(error);
     next(error);
   }
 });
 
-/* _____________________________________ EDIT CARDS _____________________________________________ */
+router.post('/delete', async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await User.findByIdAndRemove(id);
+    res.redirect('/');
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+/* _____________________________________ EDIT TRAVEL _____________________________________________ */
+
+

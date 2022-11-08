@@ -11,7 +11,7 @@ const countriesSchema = new Schema(
     cities: String,
     capital: String,
     currency: String,
-    language: String,
+    language: [String],
   },
   {
     timestamps: true,

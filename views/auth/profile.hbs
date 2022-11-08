@@ -15,7 +15,7 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/edit-profile">Edit Profile</a>
+            <a class="nav-link active" aria-current="page" href="/auth/edit-profile">Edit Profile</a>
           </li>
           <hr>
           <li class="nav-item">
@@ -46,18 +46,20 @@
 <div class="card" style="width: 18rem;">
   <img src="{{flagCountry}}" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">{{countryName}} </h5>
-    {{!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> --}}
+    <h5 class="card-title">{{countryName}} </h5> 
   </div>
   <ul class="list-group list-group-flush">
     <li class="list-group-item">Capital: {{capital}}</li>
-    <li class="list-group-item">Official Language: </li>
-    <li class="list-group-item">Currency: </li>
+    <li class="list-group-item">Official Language: 
+      {{#each language}}
+      {{this}}
+      {{/each}}
+    </li>
+    <li class="list-group-item">Currency: {{currency}} </li>
   </ul>
   <div class="card-body">
     <a href="#" class="card-link">Edit Travel</a>
     <a href="#" class="card-link">Delete</a>
-   {{!--  <button type="submit">Edit Travel</button> --}}
   </div>
 </div>
 </div>

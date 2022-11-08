@@ -1,1 +1,23 @@
   <h2>Edit Profile</h2>
+  <form action="/auth/edit-profile" method="POST">
+
+    <label>First Name
+      <input type="firstName" name="firstName" placeholder="Update First name" />
+    </label>
+
+    <label>Last Name
+      <input type="lastName" name="lastName" placeholder="Update Last name" />
+    </label>
+
+    <label> Country Of Birth
+      <input type="countryOfBirth" name="countryOfBirth" placeholder="Update Country Of Birth" />
+    </label>
+
+    
+    <label> Residence
+      <input type="residence" name="residence" placeholder="Update Residence" />
+    </label>
+
+    <button type="submit" action="/auth/profile" >Save changes</button>
+  </form>
+</div>
