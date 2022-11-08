@@ -1,13 +1,90 @@
 body {
   margin: 0;
   padding: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00b7ff;
+.navIndex {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: transparent;
+  position: relative;
+  z-index: 2;
+  margin-top: 1rem;
+}
+
+.elementsNavIndex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.liNavIndex {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.liNavIndex a {
+  padding-right: 10px;
+  text-decoration: none;
+  font-size: small;
+  font-family: "Basier Square Narrow", sans-serif;
+  color: black;
+  text-align: center;
+}
+
+.navIndex h3 {
+  font-family: "Tilson", sans-serif;
+  font-size: 1.7rem;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.hrNavIndex {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
-  color: 15px;
+  font-size: 1.8rem;
+  font-weight: bolder;
+  padding-left: 2.5rem;
+  padding-top: 2.5rem;
+}
+
+h2 {
+  text-align: left;
+  padding-left: 2.5rem;
+  font-weight: lighter;
+}
+
+.buttonLogin {
+  color: white;
+  background-color: black;
+  border: none;
+  justify-content: center;
+  padding: 1rem 8.3rem;
+  font-weight: lighter;
+}
+
+.labelLogin {
+  text-align: left;
+  border: none;
+  width: 100%;
+  font-size: 0.6rem;
+}
+
+.button {
+  text-align: center;
+}
+
+.form {
+  width: 80%;
 }
