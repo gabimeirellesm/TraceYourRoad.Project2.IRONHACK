@@ -9,7 +9,9 @@ const countriesSchema = new Schema(
     notes: String,
     favorites: String,
     cities: String,
-
+    capital: String,
+    currency: String,
+    language: String,
   },
   {
     timestamps: true,

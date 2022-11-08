@@ -124,16 +124,13 @@ module.exports = router;
 
 /* _____________________________________ PROFILE _____________________________________________ */
 
-router.get("/profile", async(req, res) => {
+router.get("/profile", async (req, res) => {
   const userId = req.session.user._id;
 
-   const response = await axios.get("https://restcountries.com/v3.1/all")
-   const user = await User.findById(userId).populate("createdCountries")
+  const response = await axios.get("https://restcountries.com/v3.1/all");
+  const user = await User.findById(userId).populate("createdCountries");
 
   res.render("auth/profile", { user, countries: response.data });
-
-
-
 });
 
 //CREATE CARD IN PROFILE
@@ -143,16 +140,22 @@ router.post("/create-card", (req, res, next) => {
     .then((response) => {
       return Countries.create({
         countryName: response.data[0].name.common,
-        flagCountry: response.data[0].flags.png,})
+        flagCountry: response.data[0].flags.png,
+        capital: response.data[0].capital,
+        /*  currency: response.data[0].currencies.pen.name, */
+        /* language: response.data[0].languages, */
+      });
     })
-      .then((country) => {
-        const userId = req.session.user._id
-       console.log(userId)
-        console.log(country._id) 
-        return User.findByIdAndUpdate(userId, {$push: {createdCountries: country._id}}) 
-      })
-     .then(() =>  res.redirect("/auth/profile"))
-    });
+    .then((country) => {
+      const userId = req.session.user._id;
+      console.log(userId);
+      console.log(country._id);
+      return User.findByIdAndUpdate(userId, {
+        $push: { createdCountries: country._id },
+      });
+    })
+    .then(() => res.redirect("/auth/profile"));
+});
 
 /* _____________________________________ API _____________________________________________ */
 
@@ -178,7 +181,7 @@ router.post("/edit-profile", async (req, res, next) => {
     } else {
       imageUrl = currentImage;
     }
-    await Movie.findByIdAndUpdate({
+    await User.findByIdAndUpdate({
       firstName,
       lastName,
       countryOfBirth,
