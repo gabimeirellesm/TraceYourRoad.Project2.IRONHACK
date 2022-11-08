@@ -1,41 +1,148 @@
+<div class="loginPage">
+  <br />
+  <h1>COLOR YOUR ROAD</h1>
+  <br />
+  <br />
+  <h2>SIGN UP</h2>
+  <br />
+  <div id="login-form">
+    <form action="/auth/signup" method="POST">
+      <div>
+        <label>
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="text"
+              name="firstName"
+              placeholder="FIRST NAME"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <div>
+        <label>
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="text"
+              name="lastName"
+              placeholder="LAST NAME"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+
+      <div>
+        <label>
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="email"
+              name="email"
+              placeholder="EMAIL"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <div>
+        <label>
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="password"
+              name="password"
+              placeholder="PASSWORD"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <div>
+        <label>
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="text"
+              name="countryOfBirth"
+              placeholder="COUNTRY OF BIRTH"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <div>
+        <label>
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="text"
+              name="residence"
+              placeholder="RESIDENCE"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <br />
+      <div class="button">
+        <button class="buttonLogin" type="submit">SIGN UP</button>
+      </div>
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
+  <br />
+</div>
+
+{{!-- 
 <div id="form">
   <h2>Sign Up</h2>
-  <form action="/auth/signup" method="POST">
+  
 
     <label>
       First Name
-      <input type="text" name="firstName" placeholder="First Name" />
+      
     </label>
 
     <label>
       Last Name
-      <input type="text" name="lastName" placeholder="Last Name" />
+      
     </label>
 
     <label>
       Email
-      <input type="email" name="email" placeholder="Your email" />
+      
     </label>
 
     <label>
       Password
-      <input type="password" name="password" placeholder="Your password" />
+      
     </label>
 
     <label>
       Country of Birth
-      <input type="text" name="countryOfBirth" placeholder="Country of Birth" />
+      
     </label>
 
     <label>
       Residence
-      <input type="text" name="residence" placeholder="Residence" />
+      
     </label>
 
-    <button type="submit">Sign Up</button>
+    
 
     {{#if errorMessage}}
       <p class="error">{{errorMessage}}</p>
     {{/if}}
   </form>
-</div>
+</div> --}}
