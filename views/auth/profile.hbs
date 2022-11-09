@@ -41,6 +41,8 @@
 <br>
 <br>
 
+{{!-- ________________________ CARD ________________________________ --}}
+
 {{#each user.createdCountries}}
 <div style="margin-left: 2rem; ">
 <div class="card" style="width: 18rem;">
@@ -49,28 +51,26 @@
     <h5 class="card-title">{{countryName}} </h5> 
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item">Capital: {{capital}}</li>
-    <li class="list-group-item">Official Language: 
+    <li class="list-group-item">CAPITAL: {{capital}}</li>
+    <li class="list-group-item">OFFICIAL LANGUAGE: 
       {{#each language}}
       {{this}}
       {{/each}}
     </li>
-    <li class="list-group-item">Currency: {{currency}} </li>
+    <li class="list-group-item">CURRENCY: {{currency}} </li>
   </ul>
+
 <form  action="/auth/edit-card">
   <div class="card-body">
-    <button class="card-link">Edit Card</a>
+    <button class="card-link">EDIT CARD</a>
   </div>
   </form>
-
 <form  action="/auth/card-details">
   <div class="card-body">
-    <button class="card-link">More Details</a>
+    <button class="card-link">MORE DETAILS</a>
   </div>
   </form>
-
-  <a href="#" class="card-link">Delete</a>
-</div>
+  <a class="card-body" href="#" class="card-link">DELETE</a>
 </div>
 <br>
 {{/each}}

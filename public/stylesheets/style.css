@@ -98,3 +98,14 @@ h2 {
   text-decoration: underline;
   color: black;
 }
+
+.buttonHomepage:hover {
+  color: rgb(53, 52, 52);
+}
+
+.card-body {
+  font-size: 0.5rem;
+  padding: 0.5rem 0rem;
+  display: flex;
+  justify-content: center;
+}
