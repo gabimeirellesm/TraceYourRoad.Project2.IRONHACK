@@ -134,12 +134,22 @@ hr {
   color: white;
   border: none;
   font-family: "Tilson", sans-serif;
+  text-align: center;
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   transition: 0.3s;
   width: 80%;
+  justify-content: center;
+  display: flex;
+  position: static;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .card:hover {
@@ -148,4 +158,10 @@ hr {
 
 .container {
   padding: 2px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.container img{
+  width: 90%
 }
