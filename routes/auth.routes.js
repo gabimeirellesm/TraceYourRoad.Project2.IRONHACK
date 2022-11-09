@@ -99,10 +99,9 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       req.session.user = user;
       res.redirect("/auth/profile");
     } else {
-      res.redirect("/auth/login");
-      /* res.render("auth/login", {
-        errorMessage: "Wrong password.",
-      }); */
+      res.redirect("/auth/login"), {
+        errorMessage: "Wrong password."
+      }
     }
   } catch (error) {
     console.log(error);
