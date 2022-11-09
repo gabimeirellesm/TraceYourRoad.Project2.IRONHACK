@@ -263,3 +263,16 @@ router.post('/del', async (req, res, next) => {
     next(error);
   }
 });
+
+
+/* _____________________________________ CARD DETAILS _____________________________________________ */
+
+router.get("/card-details", async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    res.render("auth/card-details", user)
+   } catch (error) {
+    console.log(error);
+    next(error);
+   }
+});

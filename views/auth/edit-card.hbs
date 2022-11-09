@@ -1,10 +1,17 @@
-{{!--   { ,arrivalDate ,departureDate, , ,  /* currentImage */ } --}}
+{{!--   { * currentImage */ } --}}
   
-  <h2>More details</h2>
-  <form action="/auth/edit-profile" method="POST">
-
+  <h2>Edit Card</h2>
+<form action="/auth/edit-card" method="post">
     <label>Notes:
       <input type="notes" name="notes" placeholder="Notes" />
+    </label>
+
+        <label>Arrival Date
+      <input type="date" name="arrivalDate" placeholder="Arrival Date" />
+    </label>
+
+        <label>Departure Date:
+      <input type="date" name="departureDate" placeholder="Departure Date" />
     </label>
 
     <label> Trip highlight:
@@ -18,9 +25,10 @@
 
     {{!-- PHOTO --}}
     
-    <button type="submit" action="/auth/profile" >Update trip</button>
+    <button type="submit" >UPDATE</button>
   </form>
+
   <form action="/auth/profile" >
-    <button type="submit" >Discard Changes</button>
+    <button type="submit" >BACK TO PROFILE</button>
     </form>
 </div>
