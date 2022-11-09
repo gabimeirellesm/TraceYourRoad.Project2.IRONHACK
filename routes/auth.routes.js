@@ -58,7 +58,7 @@ router.post("/signup", async (req, res, next) => {
       password: hashedPassword,
     });
 
-    res.redirect("/auth/profile");
+    res.redirect("/");
   } catch (error) {
     console.log(error);
     if (error instanceof mongoose.Error.ValidationError) {
