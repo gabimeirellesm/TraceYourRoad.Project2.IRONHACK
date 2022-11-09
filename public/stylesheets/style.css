@@ -88,3 +88,13 @@ h2 {
 .form {
   width: 80%;
 }
+
+.buttonHomepage {
+  text-align: left;
+  border: none;
+  width: 100%;
+  font-size: 0.8rem;
+
+  text-decoration: underline;
+  color: black;
+}
