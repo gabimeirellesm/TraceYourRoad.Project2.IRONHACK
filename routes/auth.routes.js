@@ -49,7 +49,7 @@ router.post("/signup", async (req, res, next) => {
 
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const createdUser = await User.create({
+    const user = await User.create({
       firstName,
       lastName,
       countryOfBirth,
@@ -58,7 +58,9 @@ router.post("/signup", async (req, res, next) => {
       password: hashedPassword,
     });
 
-    res.redirect("/");
+    req.session.user = user;
+
+    res.redirect("/auth/profile");
   } catch (error) {
     console.log(error);
     if (error instanceof mongoose.Error.ValidationError) {
@@ -218,27 +220,31 @@ router.post('/delete', async (req, res, next) => {
 /* _____________________________________ EDIT CARD _____________________________________________ */
 
 
-router.get("/edit-card", async (req, res, next) => {
+router.get("/edit-card/:id", (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
-    res.render("auth/edit-card", user)
+    const cardId = req.params.id
+    res.render("auth/edit-card", {cardId} )
    } catch (error) {
     console.log(error);
     next(error);
    }
 });
 
-router.post("/edit-card", async (req, res, next) => {
-  const { arrivalDate ,departureDate, notes, favorites, cities /* currentImage */ } = req.body;
+router.post("/edit-card/:id", async (req, res, next) => {
   try {
+    const { arrivalDate ,departureDate, notes, favorites, cities /* photos */ } = req.body;
+    const cardId = req.params.id
+
 /*     let imageUrl;
     if (req.file) {
       imageUrl = req.file.path;
     } else {
       imageUrl = currentImage;
     } */
-    const cardId = req.session.user._id
-    await User.findByIdAndUpdate(cardId, {
+
+  
+
+    await Countries.findByIdAndUpdate(cardId, {
       arrivalDate,
       departureDate,
       notes,
@@ -246,18 +252,19 @@ router.post("/edit-card", async (req, res, next) => {
       cities,
       /* photo */
     });
-    res.redirect("/auth/edit-card");
+    res.redirect(`/auth/card-details/${cardId}`);
   } catch (error) {
     console.log(error);
     next(error);
   }
 });
 
-router.post('/del', async (req, res, next) => {
+router.get('/del/:id', async (req, res, next) => {
   try {
-    const { id } = req.params;
-    await User.findByIdAndRemove(id);
-    res.redirect('/');
+    const  id  = req.params.id
+    const userId = req.session.user._id
+    await Countries.findByIdAndRemove(id);
+  res.redirect(`/auth/profile`); 
   } catch (error) {
     console.log(error);
     next(error);
@@ -267,10 +274,11 @@ router.post('/del', async (req, res, next) => {
 
 /* _____________________________________ CARD DETAILS _____________________________________________ */
 
-router.get("/card-details", async (req, res, next) => {
+router.get("/card-details/:id", async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id);
-    res.render("auth/card-details", user)
+    const cardId = req.params.id
+    const card = await Countries.findById(cardId);
+    res.render("auth/card-details", card)
    } catch (error) {
     console.log(error);
     next(error);

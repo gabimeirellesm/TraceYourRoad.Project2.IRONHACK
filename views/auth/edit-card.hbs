@@ -1,7 +1,8 @@
 {{!--   { * currentImage */ } --}}
   
   <h2>Edit Card</h2>
-<form action="/auth/edit-card" method="post">
+
+<form action="/auth/edit-card/{{cardId}}" method="post">
     <label>Notes:
       <input type="notes" name="notes" placeholder="Notes" />
     </label>

@@ -60,17 +60,17 @@
     <li class="list-group-item">CURRENCY: {{currency}} </li>
   </ul>
 
-<form  action="/auth/edit-card">
+<form  action="/auth/edit-card/{{_id}}">
   <div class="card-body">
     <button class="card-link">EDIT CARD</a>
   </div>
   </form>
-<form  action="/auth/card-details">
+<form  action="/auth/card-details/{{_id}}">
   <div class="card-body">
     <button class="card-link">MORE DETAILS</a>
   </div>
   </form>
-  <a class="card-body" href="#" class="card-link">DELETE</a>
+ 
 </div>
 <br>
 {{/each}}
