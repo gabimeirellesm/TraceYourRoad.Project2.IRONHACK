@@ -43,8 +43,10 @@
 
 {{!-- ________________________ CARD ________________________________ --}}
 
-{{#each user.createdCountries}}
-<div style="margin-left: 2rem; ">
+
+<div  class="row" "divpadding">
+  {{#each user.createdCountries}}
+  <div class="col-sm-3">
 <div class="card" style="width: 18rem;">
   <img src="{{flagCountry}}" class="card-img-top" alt="...">
   <div class="card-body">
@@ -62,15 +64,14 @@
 
 <form  action="/auth/edit-card/{{_id}}">
   <div class="card-body">
+    <span class="spanButtons">
     <button class="card-link">EDIT CARD</a>
-  </div>
-  </form>
-<form  action="/auth/card-details/{{_id}}">
-  <div class="card-body">
+  
     <button class="card-link">MORE DETAILS</a>
+    </span>
   </div>
   </form>
- 
+  </div>
+ {{/each}}
 </div>
-<br>
-{{/each}}
+

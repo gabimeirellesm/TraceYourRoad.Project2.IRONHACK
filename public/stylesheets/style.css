@@ -103,9 +103,49 @@ h2 {
   color: rgb(53, 52, 52);
 }
 
+/* CARDS */
+
 .card-body {
   font-size: 0.5rem;
-  padding: 0.5rem 0rem;
+  padding: 0rem 0rem;
+  font-family: "Basier Square Narrow", sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
+}
+
+.spanButtons {
+  margin: 1rem;
+  font-size: 0.8rem;
+  background-color: none;
+}
+
+hr {
+  width: 80%;
+  margin: 0;
+  padding: 0;
+  color: black;
+}
+
+.textButtonEdit {
+  padding: 1rem 5.5rem;
+  background-color: black;
+  color: white;
+  border: none;
+  font-family: "Tilson", sans-serif;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 80%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  padding: 2px 16px;
 }

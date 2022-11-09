@@ -1,24 +1,40 @@
-<h2>Your Trip</h2>
-
-<p>{{countryName}}</p>
-<img src="{{flagCountry}}"</p>
-<p>{{capital}}</p>
-<p>{{currency}}</p>
-<p>{{language}}</p>
-<p>{{cities}}</p>
-<p>{{notes}}</p>
-<p>{{favorites}}</p>
-<p>{{arrivalDate}}</p>
-<p>{{departureDate}}</p>
-
-
-
-
-  <form action="/auth/profile" >
-    <button type="submit" >BACK TO PROFILE</button>
-    </form>
-
-
-
-
-     <a class="card-body" href="/auth/del/{{_id}}" class="card-link">DELETE</a>
+<div class="loginPage">
+  <br />
+  <h1>COLOR YOUR ROAD</h1>
+  <br />
+  <br />
+  <br />
+<div class="card">  
+  <div class="container">
+  <div id="login-form">
+   <img src="{{flagCountry}}"/>
+  <h2>{{countryName}}</h2>
+  <hr>
+  <p>{{capital}}</p>
+  <hr>
+  <p>{{currency}}</p>
+  <hr>
+  <p>{{language}}</p>
+  <hr>
+  <p>{{cities}}</p>
+  <hr>
+  <p>{{notes}}</p>
+  <hr>
+  <p>{{favorites}}</p>
+  <hr>
+  <p>{{arrivalDate}}</p>
+  <hr>
+  <p>{{departureDate}}</p>
+  <hr>
+  </div>
+  </div>
+</div>
+</div>
+      <div class="button">
+         <form class="buttonEdit" action="/auth/profile" >
+        <button class="textButtonEdit" type="submit">BACK TO PROFILE</button>
+      </form>
+      </div>
+<div class="button">
+<a class="buttonHomepage" href="/auth/del/{{_id}}">DELETE</a>
+</div>
