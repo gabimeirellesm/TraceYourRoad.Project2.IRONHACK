@@ -242,7 +242,6 @@ router.post("/edit-card/:id", async (req, res, next) => {
       imageUrl = currentImage;
     } */
 
-  
 
     await Countries.findByIdAndUpdate(cardId, {
       arrivalDate,

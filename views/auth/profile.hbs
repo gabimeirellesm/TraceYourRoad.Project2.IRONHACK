@@ -66,11 +66,18 @@
   <div class="card-body">
     <span class="spanButtons">
     <button class="card-link">EDIT CARD</a>
-  
-    <button class="card-link">MORE DETAILS</a>
     </span>
   </div>
   </form>
+
+<FORM action="/auth/card-details/{{_id}}">
+ <div class="card-body">
+  <span class="spanButtons">
+  <button class="card-link">MORE DETAILS</a>
+  </span>
+  </div>
+</FORM>
+
   </div>
  {{/each}}
 </div>

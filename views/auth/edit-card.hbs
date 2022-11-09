@@ -4,7 +4,7 @@
 
 <form action="/auth/edit-card/{{cardId}}" method="post">
     <label>Notes:
-      <input type="notes" name="notes" placeholder="Notes" />
+      <input type="notes" name="notes" placeholder="Notes" >
     </label>
 
         <label>Arrival Date
@@ -21,7 +21,7 @@
 
     
     <label> Cities I have been:
-      <input type="cities" name="cities" placeholder="Visited cities" />
+      <input type="cities" name="cities" placeholder="Visited cities" value="{{cities}}"/>
     </label>
 
     {{!-- PHOTO --}}
