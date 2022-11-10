@@ -134,7 +134,9 @@ router.get("/profile", async (req, res) => {
   const response = await axios.get("https://restcountries.com/v3.1/all");
   const user = await User.findById(userId).populate("createdCountries");
 
-  res.render("auth/profile", { user, countries: response.data });
+  const numbCountries = user.createdCountries.length;
+
+  res.render("auth/profile", { user, countries: response.data, numbCountries });
 });
 
 //CREATE CARD IN PROFILE
@@ -220,10 +222,18 @@ router.post("/delete", async (req, res, next) => {
 
 /* _____________________________________ EDIT CARD _____________________________________________ */
 
-router.get("/edit-card/:id", (req, res, next) => {
+router.get("/edit-card/:id", async (req, res, next) => {
   try {
     const cardId = req.params.id;
-    res.render("auth/edit-card", { cardId });
+    const thisCard = await Countries.findById(cardId);
+
+    let departDate = thisCard.departureDate;
+    departDate.value = thisCard.departureDate.toISOString().substr(0, 10);
+
+    let arrivDate = thisCard.arrivalDate;
+    arrivDate.value = thisCard.arrivalDate.toISOString().substr(0, 10);
+
+    res.render("auth/edit-card", { thisCard, cardId, departDate, arrivDate });
   } catch (error) {
     console.log(error);
     next(error);

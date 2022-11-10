@@ -5,8 +5,14 @@ const countriesSchema = new Schema(
     countryName: String,
     flagCountry: String,
 
-    arrivalDate: Date,
-    departureDate: Date,
+    arrivalDate: {
+      type: Date,
+      default: Date.now(),
+    },
+    departureDate: {
+      type: Date,
+      default: Date.now(),
+    },
     photos: [String],
     notes: String,
     favorites: String,

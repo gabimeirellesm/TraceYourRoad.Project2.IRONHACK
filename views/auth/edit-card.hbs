@@ -17,6 +17,7 @@
               type="notes"
               name="notes"
               placeholder="Write here some notes about your trip"
+              value="{{thisCard.notes}}"
             />
           </label style="margin: 1rem">
           <hr class="cardHr" />
@@ -26,12 +27,13 @@
               type="favorites"
               name="favorites"
               placeholder="Write here the best of the trip"
+              value="{{thisCard.favorites}}"
             />
           </label style="margin: 1rem">
           <hr class="cardHr" />
           <label style="margin: 1rem">CITIES I HAVE BEEN:<br />
             <input
-            
+            value="{{thisCard.cities}}"
               class="inputEdit"
               type="cities"
               name="cities"
@@ -40,7 +42,7 @@
           </label style="margin: 1rem">
           <hr class="cardHr" />
           <label style="margin-left:1rem; margin-top:1rem; margin-bottom:1rem; margin-right: 0.2rem">ARRIVAL DATE:
-            <input style="color: rgb(89, 89, 89); width:10.5rem" type="date" name="arrivalDate" placeholder="Arrival Date" />
+            <input style="color: rgb(89, 89, 89); width:10.5rem" type="date" name="arrivalDate" placeholder="Arrival Date" value="{{arrivDate.value}}"/>
           </label>
           <hr class="cardHr" />
           <label style="margin-left:1rem; margin-top:1rem; margin-bottom:1rem; margin-right: 0.2rem">DEPARTURE DATE:
@@ -49,6 +51,7 @@
               type="date"
               name="departureDate"
               placeholder="Departure Date"
+              value="{{departDate.value}}"
             />
           </label>
           <hr class="cardHr" />
