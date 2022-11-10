@@ -1,53 +1,73 @@
-{{! { number of countries, percentage visited, countries list, user information } }}
-
 <nav class="navbar navbar-dark bg-dark fixed-top">
   <div class="container-fluid" style="">
-    <h3 style="color: white; font-size:1.8rem; font-weight:bold">Welcome {{user.firstName}} {{user.lastName}} </h4>
+    <h5 style="color: white; font-size:1.8rem; font-weight:bold;">TRACE YOUR ROAD</h5>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">TRACE YOUR ROAD</h5>
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="margin-left: auto;
+    margin-right: auto";>TRACE YOUR ROAD</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-
+      <hr class="navHr">
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <hr>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/">Home</a>
+            <a style="font-size: 1.2rem; color:white" class="nav-link active" aria-current="page" href="/auth/edit-profile">EDIT PROFILE</a>
           </li>
-            <hr>
+          <hr class="navHr">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/auth/edit-profile">Edit Profile</a>
+            <a style="font-size: 1.2rem; color:white" class="nav-link active" aria-current="page" href="/">HOMEPAGE</a>
           </li>
-          <hr>
-          <li class="nav-item">
-            <a class="nav-link" href="/auth/logout">Logout</a>
-          </li>
-          <hr>
+          <hr class="navHr">
       <li>
             <form action="/auth/create-card" method="post">
-            <select name="countries" >
+            <select class="inputNav" name="countries" >
             {{#each countries}}
-            <option value="{{name.common}}">{{name.common}}</option>
+            <option style="margin-left: auto;
+    margin-right: auto;" value="{{name.common}}">{{name.common}}</option>
             {{/each}} 
             </select>
-            <button type="submit">Add Country</button>
-            <hr>
+            <button class="buttonNav" type="submit">ADD COUNTRY</button>
+            <hr class="navHr">
          </form>
             </li>
            </ul>
+         <li class="nav-item">
+            <a class="nav-link" href="/auth/logout">LOGOUT</a>
+          </li>
+          <hr class="navHr">
 </nav>
 <br>
 <br>
 <br>
-<p style="text-align:center">COUNTRIES VISITED: {{numbCountries}}</p>
-<hr>
+<br>
 
 {{!-- ________________________ CARD ________________________________ --}}
+
+<div  class="row" "divpadding">
+  <div class="col-sm-3">
+<div class="card" style="width: 18rem;">
+  <img  src="/images/ok-fococlipping-standard.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">   WELCOME</h5> 
+    <h5 class="card-title"> {{user.firstName}} {{user.lastName}}</h5> 
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">BORN IN:  {{user.countryOfBirth}} </li>
+    <li class="list-group-item">RESIDENCE: {{user.residence}}
+    </li>
+    <li><p style="text-align:center">COUNTRIES VISITED: {{numbCountries}}</p></li>
+<li><p style="text-align:center; color:grey;">YOU KNOW {{percentCountries}}% OF THE WORLD</p></li>
+
+  </ul>
+</div>
+</div>
+</div>
+
 
 <br>
 <div  class="row" "divpadding">

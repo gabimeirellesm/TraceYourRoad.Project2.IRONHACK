@@ -135,8 +135,14 @@ router.get("/profile", isLoggedIn, async (req, res) => {
   const user = await User.findById(userId).populate("createdCountries");
 
   const numbCountries = user.createdCountries.length;
+  const percentCountries = (numbCountries / 195).toFixed(2);
 
-  res.render("auth/profile", { user, countries: response.data, numbCountries });
+  res.render("auth/profile", {
+    user,
+    countries: response.data,
+    numbCountries,
+    percentCountries,
+  });
 });
 
 //CREATE CARD IN PROFILE
