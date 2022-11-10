@@ -10,7 +10,6 @@ const Countries = require("../models/Countries.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-
 /* _____________________________________ SIGN UP _____________________________________________ */
 
 router.get("/signup", isLoggedOut, (req, res, next) => {
@@ -101,9 +100,10 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       req.session.user = user;
       res.redirect("/auth/profile");
     } else {
-      res.redirect("/auth/login"), {
-        errorMessage: "Wrong password."
-      }
+      res.redirect("/auth/login"),
+        {
+          errorMessage: "Wrong password.",
+        };
     }
   } catch (error) {
     console.log(error);
@@ -175,23 +175,24 @@ router.get("/", (req, res, next) => {
 router.get("/edit-profile", async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
-    res.render("auth/edit-profile", user)
-   } catch (error) {
+    res.render("auth/edit-profile", user);
+  } catch (error) {
     console.log(error);
     next(error);
-   }
+  }
 });
 
 router.post("/edit-profile", async (req, res, next) => {
-  const { firstName, lastName, countryOfBirth, residence, /* currentImage */ } = req.body;
+  const { firstName, lastName, countryOfBirth, residence /* currentImage */ } =
+    req.body;
   try {
-/*     let imageUrl;
+    /*     let imageUrl;
     if (req.file) {
       imageUrl = req.file.path;
     } else {
       imageUrl = currentImage;
     } */
-    const userId = req.session.user._id
+    const userId = req.session.user._id;
     await User.findByIdAndUpdate(userId, {
       firstName,
       lastName,
@@ -206,11 +207,11 @@ router.post("/edit-profile", async (req, res, next) => {
   }
 });
 
-router.post('/delete', async (req, res, next) => {
+router.post("/delete", async (req, res, next) => {
   try {
     const { id } = req.params;
     await User.findByIdAndRemove(id);
-    res.redirect('/');
+    res.redirect("/");
   } catch (error) {
     console.log(error);
     next(error);
@@ -219,29 +220,33 @@ router.post('/delete', async (req, res, next) => {
 
 /* _____________________________________ EDIT CARD _____________________________________________ */
 
-
 router.get("/edit-card/:id", (req, res, next) => {
   try {
-    const cardId = req.params.id
-    res.render("auth/edit-card", {cardId} )
-   } catch (error) {
+    const cardId = req.params.id;
+    res.render("auth/edit-card", { cardId });
+  } catch (error) {
     console.log(error);
     next(error);
-   }
+  }
 });
 
 router.post("/edit-card/:id", async (req, res, next) => {
   try {
-    const { arrivalDate ,departureDate, notes, favorites, cities /* photos */ } = req.body;
-    const cardId = req.params.id
+    const {
+      arrivalDate,
+      departureDate,
+      notes,
+      favorites,
+      cities /* photos */,
+    } = req.body;
+    const cardId = req.params.id;
 
-/*     let imageUrl;
+    /*     let imageUrl;
     if (req.file) {
       imageUrl = req.file.path;
     } else {
       imageUrl = currentImage;
     } */
-
 
     await Countries.findByIdAndUpdate(cardId, {
       arrivalDate,
@@ -258,28 +263,41 @@ router.post("/edit-card/:id", async (req, res, next) => {
   }
 });
 
-router.get('/del/:id', async (req, res, next) => {
+router.get("/del/:id", async (req, res, next) => {
   try {
-    const  id  = req.params.id
-    const userId = req.session.user._id
+    const id = req.params.id;
+    const userId = req.session.user._id;
     await Countries.findByIdAndRemove(id);
-  res.redirect(`/auth/profile`); 
+    res.redirect(`/auth/profile`);
   } catch (error) {
     console.log(error);
     next(error);
   }
 });
 
-
 /* _____________________________________ CARD DETAILS _____________________________________________ */
 
 router.get("/card-details/:id", async (req, res, next) => {
   try {
-    const cardId = req.params.id
+    const cardId = req.params.id;
     const card = await Countries.findById(cardId);
-    res.render("auth/card-details", card)
-   } catch (error) {
+
+    const departDate = card.departureDate.toLocaleDateString("en-uk", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    const arrivDate = card.arrivalDate.toLocaleDateString("en-uk", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    res.render("auth/card-details", { card, departDate, arrivDate });
+  } catch (error) {
     console.log(error);
     next(error);
-   }
+  }
 });

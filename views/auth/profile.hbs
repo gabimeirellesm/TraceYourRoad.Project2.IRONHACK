@@ -1,14 +1,15 @@
 {{! { number of countries, percentage visited, countries list, user information } }}
 
 <nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid">
-    <h3 style="color: white;">Welcome {{user.firstName}} {{user.lastName}}</h3>
+  <div class="container-fluid" style="">
+    <h3 style="color: white; ">Welcome {{user.firstName}} {{user.lastName}}</h3>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">COLOR YOUR ROAD</h5>
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">TRACE YOUR ROAD</h5>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
 
@@ -66,7 +67,7 @@
   <div class="card-body">
 
     <span class="spanButtonsCards">
-    <button style="height:2.35rem" class="buttonCard">EDIT CARD</a>
+    <button style="height:2.35rem" class="buttonCard buttonCardEdit">EDIT CARD</a>
     </span>
  
   </form>
@@ -81,6 +82,7 @@
 </FORM>
 
   </div>
+  <br>
  {{/each}}
 </div>
 

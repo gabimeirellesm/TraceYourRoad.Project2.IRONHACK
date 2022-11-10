@@ -172,12 +172,6 @@ hr {
   justify-content: center;
 }
 
-.container {
-  padding: 2px 16px;
-  display: flex;
-  justify-content: center;
-}
-
 #card-form {
   display: flex;
   flex-direction: column;
@@ -268,6 +262,11 @@ hr {
   font-weight: lighter;
   box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
+    
+}
+
+.buttonCardEdit {
+margin-right: 10px;
 }
 
 .spanButtonsCards {
