@@ -94,13 +94,13 @@ h2 {
 }
 
 .buttonHomepage {
-  text-align: left;
+  text-align: right;
   border: none;
   width: 100%;
   font-size: 0.8rem;
-
+  font-weight: bolder;
   text-decoration: underline;
-  color: black;
+  color: rgb(165, 36, 36);
 }
 
 .buttonHomepage:hover {
@@ -216,10 +216,6 @@ hr {
   margin-left: 0.4rem;
 }
 
-.loginPage h1 {
-  font-family: "Tilson", sans-serif;
-}
-
 .card p {
   text-align: left;
   margin-top: auto;
@@ -262,16 +258,21 @@ hr {
   font-weight: lighter;
   box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
-    
 }
 
 .buttonCardEdit {
-margin-right: 10px;
+  margin-right: 10px;
 }
 
 .spanButtonsCards {
   margin: 1rem;
   font-size: 0.8rem;
   background-color: none;
-  display:inline
-  }
+  display: inline;
+}
+
+label {
+  font-family: "Basier Square Narrow", sans-serif;
+  font-weight: lighter;
+  font-size: 1.1rem;
+}

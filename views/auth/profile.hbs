@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-dark bg-dark fixed-top">
   <div class="container-fluid" style="">
-    <h3 style="color: white; ">Welcome {{user.firstName}} {{user.lastName}}</h3>
+    <h3 style="color: white; font-size:1.8rem; font-weight:bold">Welcome {{user.firstName}} {{user.lastName}} </h4>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -37,11 +37,14 @@
            </ul>
 </nav>
 <br>
+<br>
+<br>
+<p style="text-align:center">COUNTRIES VISITED: {{numbCountries}}</p>
+<hr>
 
-<h1>You visited {{numbCountries}} countries!</h1>
 {{!-- ________________________ CARD ________________________________ --}}
 
-
+<br>
 <div  class="row" "divpadding">
   {{#each user.createdCountries}}
   <div class="col-sm-3">
@@ -64,7 +67,7 @@
   <div class="card-body">
 
     <span class="spanButtonsCards">
-    <button style="height:2.35rem" class="buttonCard buttonCardEdit">EDIT CARD</a>
+    {{!-- <button style="height:2.35rem" class="buttonCard buttonCardEdit">EDIT CARD</a> --}}
     </span>
  
   </form>
