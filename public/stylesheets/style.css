@@ -138,7 +138,7 @@ h2 {
 }
 
 h3 {
-  text-align: center;
+  /* text-align: center; */
   margin-left: auto;
   margin-right: auto;
   font-weight: lighter;
@@ -236,4 +236,23 @@ hr {
   font-family: "Basier Square Narrow", sans-serif;
   margin-left: 0;
   padding-left: 1rem;
+}
+
+.inputEdit {
+  width: 17.4rem;
+  border: none;
+  margin-top: 0.6rem;
+}
+
+.textButtonUpdate {
+  padding: 0.5rem 1.5rem;
+  background-color: white;
+  color: black;
+  border: none;
+  font-family: "Basier Square Narrow", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: lighter;
+  box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
 }

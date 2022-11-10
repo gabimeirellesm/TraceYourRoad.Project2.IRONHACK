@@ -1,41 +1,41 @@
-<div  class="loginPage">
-  <h1 style="padding-top:1.1rem; padding-bottom:0.5rem">TRACE YOUR ROAD</h1>
-<div class="card">  
-  <div class="container">
-  <div id="card-form">  
-  <img style="margin: 1rem 1rem;" src="{{flagCountry}}"/>
-  <h3> {{countryName}}</h3>
-  <hr class="cardHr"> 
-  <p>Capital:<span class="spanCard">{{capital}}</span></p>
-  <hr class="cardHr">
-  <p>Currency: <span class="spanCard">{{currency}}</span></p>
-  <hr class="cardHr">
-  <p>Language: <span class="spanCard">{{language}}</span></p>
-  <hr class="cardHr">
-  <p>Cities Visited: <span class="spanCard">{{cities}}</span></p>
-  <hr class="cardHr">
-  <p>Coments: <span class="spanCard">{{notes}}</span></p>
-  <hr class="cardHr">
-  <p>Highlight of My Trip: <span class="spanCard">{{favorites}}</span></p>
-  <hr class="cardHr">
-  <p style="color:rgb(165, 36, 36)">{{arrivalDate}}</p>
-  <hr class="cardHr">
-  <p style="color:rgb(165, 36, 36)">{{departureDate}}</p>
-  <hr class="cardHr">
-  <br>
-  </div>
-  </div>
-</div>
-<br>
-
-      <div class="button">
-         <form class="buttonEdit" action="/auth/profile" >
-        <button class="textButtonEdit" type="submit">BACK TO PROFILE</button>
-      </form>
+<div class="loginPage">
+  <h1
+    style="padding-top:1.1rem; padding-bottom:0.5rem; padding-left:0rem; text-align: center"
+  >TRACE YOUR ROAD</h1>
+  <div class="card">
+    <div class="container">
+      <div id="card-form">
+        <img style="margin: 1rem 1rem;" src="{{flagCountry}}" />
+        <h3 style="text-align: center"> {{countryName}}</h3>
+        <hr class="cardHr" />
+        <p>Capital:<span class="spanCard">{{capital}}</span></p>
+        <hr class="cardHr" />
+        <p>Currency: <span class="spanCard">{{currency}}</span></p>
+        <hr class="cardHr" />
+        <p>Language: <span class="spanCard">{{language}}</span></p>
+        <hr class="cardHr" />
+        <p>Cities Visited: <span class="spanCard">{{cities}}</span></p>
+        <hr class="cardHr" />
+        <p>Coments: <span class="spanCard">{{notes}}</span></p>
+        <hr class="cardHr" />
+        <p>Highlight of My Trip: <span class="spanCard">{{favorites}}</span></p>
+        <hr class="cardHr" />
+        <p style="color:rgb(165, 36, 36)">{{arrivalDate}}</p>
+        <hr class="cardHr" />
+        <p style="color:rgb(165, 36, 36)">{{departureDate}}</p>
+        <hr class="cardHr" />
+        <br />
       </div>
-<div class="button">
-<a class="buttonHomepage" href="/auth/del/{{_id}}">DELETE</a>
-</div>
-</div>
+    </div>
+  </div>
+  <br />
 
-
+  <div class="button">
+    <form class="buttonEdit" action="/auth/profile">
+      <button class="textButtonEdit" type="submit">BACK TO PROFILE</button>
+    </form>
+  </div>
+  <div class="button">
+    <a class="buttonHomepage" href="/auth/del/{{_id}}">DELETE</a>
+  </div>
+</div>
