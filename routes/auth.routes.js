@@ -140,27 +140,45 @@ router.get("/profile", async (req, res) => {
 });
 
 //CREATE CARD IN PROFILE
-router.post("/create-card", (req, res, next) => {
-  axios
-    .get(`https://restcountries.com/v3.1/name/${req.body.countries}`)
-    .then((response) => {
-      return Countries.create({
-        countryName: response.data[0].name.common,
-        flagCountry: response.data[0].flags.png,
-        capital: response.data[0].capital[0],
-        currency: Object.keys(response.data[0].currencies)[0],
-        language: Object.values(response.data[0].languages),
-      });
-    })
-    .then((country) => {
-      const userId = req.session.user._id;
-      console.log(userId);
-      console.log(country._id);
-      return User.findByIdAndUpdate(userId, {
-        $push: { createdCountries: country._id },
-      });
-    })
-    .then(() => res.redirect("/auth/profile"));
+router.post("/create-card", async (req, res, next) => {
+  const thisUser = await User.findById(req.session.user._id).populate(
+    "createdCountries"
+  );
+
+  const apiCall = await axios.get(
+    `https://restcountries.com/v3.1/name/${req.body.countries}`
+  );
+
+  /*   thisUser.createdCountries.forEach((country) => {
+    if (country.countryName === apiCall.data[0].name.common) {
+      return res.redirect(`/auth/card-details/${country._id}`);
+    }
+  }); */
+  let countryNames = [];
+  thisUser.createdCountries.forEach((country) => {
+    countryNames.push(country.countryName);
+  });
+
+  if (countryNames.includes(apiCall.data[0].name.common)) {
+    const foundCountry = await Countries.findOne({
+      countryName: apiCall.data[0].name.common,
+    });
+    return res.redirect(`/auth/card-details/${foundCountry._id}`);
+  } else {
+    const createdCountry = await Countries.create({
+      countryName: apiCall.data[0].name.common,
+      flagCountry: apiCall.data[0].flags.png,
+      capital: apiCall.data[0].capital[0],
+      currency: Object.keys(apiCall.data[0].currencies)[0],
+      language: Object.values(apiCall.data[0].languages),
+    });
+
+    const userUpdate = await User.findByIdAndUpdate(req.session.user._id, {
+      $push: { createdCountries: createdCountry._id },
+    });
+
+    res.redirect(`/auth/card-details/${createdCountry._id}`);
+  }
 });
 
 /* _____________________________________ API _____________________________________________ */
