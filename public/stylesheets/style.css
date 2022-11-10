@@ -94,11 +94,11 @@ h2 {
 }
 
 .buttonHomepage {
-  text-align: left;
+  text-align: right;
   border: none;
   width: 100%;
   font-size: 0.8rem;
-
+  font-weight: light;
   text-decoration: underline;
   color: black;
 }
@@ -138,7 +138,7 @@ h2 {
 }
 
 h3 {
-  text-align: center;
+  /* text-align: center; */
   margin-left: auto;
   margin-right: auto;
   font-weight: lighter;
@@ -164,12 +164,6 @@ hr {
   border: none;
   font-family: "Tilson", sans-serif;
   text-align: center;
-}
-
-.container {
-  padding: 2px 16px;
-  display: flex;
-  justify-content: center;
 }
 
 .container {
@@ -222,10 +216,6 @@ hr {
   margin-left: 0.4rem;
 }
 
-.loginPage h1 {
-  font-family: "Tilson", sans-serif;
-}
-
 .card p {
   text-align: left;
   margin-top: auto;
@@ -236,4 +226,104 @@ hr {
   font-family: "Basier Square Narrow", sans-serif;
   margin-left: 0;
   padding-left: 1rem;
+}
+
+.inputEdit {
+  width: 17.4rem;
+  border: none;
+  margin-top: 0.6rem;
+}
+
+.textButtonUpdate {
+  padding: 0.5rem 1.5rem;
+  background-color: white;
+  color: black;
+  border: none;
+  font-family: "Basier Square Narrow", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: lighter;
+  box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
+}
+
+.buttonCard {
+  padding: 0.5rem 1.5rem;
+  background-color: white;
+  color: black;
+  border: none;
+  font-family: "Basier Square Narrow", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: lighter;
+  box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
+}
+
+.buttonCardEdit {
+  margin-right: 10px;
+}
+
+.spanButtonsCards {
+  margin: 1rem;
+  font-size: 0.8rem;
+  background-color: none;
+  display: inline;
+}
+
+label {
+  font-family: "Basier Square Narrow", sans-serif;
+  font-weight: lighter;
+  font-size: 1.1rem;
+}
+
+label {
+  font-family: "Basier Square Narrow", sans-serif;
+  font-weight: lighter;
+  font-size: 1.1rem;
+}
+
+h5{
+  font-family: "Basier Square Narrow", sans-serif;
+  font-weight: lighter;
+  font-size: 1.5rem;
+}
+
+.navHr{
+  color: white;
+  width: 100%;
+  height: 1rem;
+}
+
+nav a{
+  font-family: "Basier Square Narrow", sans-serif;
+  font-weight: lighter;
+  font-size: 1.1rem;
+}
+
+.inputNav{
+  background-color: transparent;
+    border: none;
+    height: 2.5rem;
+    width: 100%;
+    color: grey;
+    font-size: 1.8rem;
+    font-family: "Basier Square Narrow", sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buttonNav{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+  height: 2rem;
+  width: 100%;
+  color: black;
+  font-family: "Basier Square Narrow", sans-serif;
+  margin-top: 1rem;
 }

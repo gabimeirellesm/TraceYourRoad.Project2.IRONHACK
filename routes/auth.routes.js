@@ -10,7 +10,6 @@ const Countries = require("../models/Countries.model");
 const isLoggedOut = require("../middleware/isLoggedOut");
 const isLoggedIn = require("../middleware/isLoggedIn");
 
-
 /* _____________________________________ SIGN UP _____________________________________________ */
 
 router.get("/signup", isLoggedOut, (req, res, next) => {
@@ -101,9 +100,10 @@ router.post("/login", isLoggedOut, async (req, res, next) => {
       req.session.user = user;
       res.redirect("/auth/profile");
     } else {
-      res.redirect("/auth/login"), {
-        errorMessage: "Wrong password."
-      }
+      res.redirect("/auth/login"),
+        {
+          errorMessage: "Wrong password.",
+        };
     }
   } catch (error) {
     console.log(error);
@@ -120,7 +120,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
       return;
     }
 
-    res.redirect("login");
+    res.redirect("/");
   });
 });
 
@@ -128,37 +128,63 @@ module.exports = router;
 
 /* _____________________________________ PROFILE _____________________________________________ */
 
-router.get("/profile", async (req, res) => {
+router.get("/profile", isLoggedIn, async (req, res) => {
   const userId = req.session.user._id;
 
   const response = await axios.get("https://restcountries.com/v3.1/all");
   const user = await User.findById(userId).populate("createdCountries");
 
-  res.render("auth/profile", { user, countries: response.data });
+  const numbCountries = user.createdCountries.length;
+  const percentCountries = (numbCountries / 195).toFixed(2);
+
+  res.render("auth/profile", {
+    user,
+    countries: response.data,
+    numbCountries,
+    percentCountries,
+  });
 });
 
 //CREATE CARD IN PROFILE
-router.post("/create-card", (req, res, next) => {
-  axios
-    .get(`https://restcountries.com/v3.1/name/${req.body.countries}`)
-    .then((response) => {
-      return Countries.create({
-        countryName: response.data[0].name.common,
-        flagCountry: response.data[0].flags.png,
-        capital: response.data[0].capital[0],
-        currency: Object.keys(response.data[0].currencies)[0],
-        language: Object.values(response.data[0].languages),
-      });
-    })
-    .then((country) => {
-      const userId = req.session.user._id;
-      console.log(userId);
-      console.log(country._id);
-      return User.findByIdAndUpdate(userId, {
-        $push: { createdCountries: country._id },
-      });
-    })
-    .then(() => res.redirect("/auth/profile"));
+router.post("/create-card", async (req, res, next) => {
+  const thisUser = await User.findById(req.session.user._id).populate(
+    "createdCountries"
+  );
+
+  const apiCall = await axios.get(
+    `https://restcountries.com/v3.1/name/${req.body.countries}`
+  );
+
+  /*   thisUser.createdCountries.forEach((country) => {
+    if (country.countryName === apiCall.data[0].name.common) {
+      return res.redirect(`/auth/card-details/${country._id}`);
+    }
+  }); */
+  let countryNames = [];
+  thisUser.createdCountries.forEach((country) => {
+    countryNames.push(country.countryName);
+  });
+
+  if (countryNames.includes(apiCall.data[0].name.common)) {
+    const foundCountry = await Countries.findOne({
+      countryName: apiCall.data[0].name.common,
+    });
+    return res.redirect(`/auth/card-details/${foundCountry._id}`);
+  } else {
+    const createdCountry = await Countries.create({
+      countryName: apiCall.data[0].name.common,
+      flagCountry: apiCall.data[0].flags.png,
+      capital: apiCall.data[0].capital[0],
+      currency: Object.keys(apiCall.data[0].currencies)[0],
+      language: Object.values(apiCall.data[0].languages),
+    });
+
+    const userUpdate = await User.findByIdAndUpdate(req.session.user._id, {
+      $push: { createdCountries: createdCountry._id },
+    });
+
+    res.redirect(`/auth/card-details/${createdCountry._id}`);
+  }
 });
 
 /* _____________________________________ API _____________________________________________ */
@@ -175,23 +201,24 @@ router.get("/", (req, res, next) => {
 router.get("/edit-profile", async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id);
-    res.render("auth/edit-profile", user)
-   } catch (error) {
+    res.render("auth/edit-profile", user);
+  } catch (error) {
     console.log(error);
     next(error);
-   }
+  }
 });
 
 router.post("/edit-profile", async (req, res, next) => {
-  const { firstName, lastName, countryOfBirth, residence, /* currentImage */ } = req.body;
+  const { firstName, lastName, countryOfBirth, residence /* currentImage */ } =
+    req.body;
   try {
-/*     let imageUrl;
+    /*     let imageUrl;
     if (req.file) {
       imageUrl = req.file.path;
     } else {
       imageUrl = currentImage;
     } */
-    const userId = req.session.user._id
+    const userId = req.session.user._id;
     await User.findByIdAndUpdate(userId, {
       firstName,
       lastName,
@@ -206,11 +233,11 @@ router.post("/edit-profile", async (req, res, next) => {
   }
 });
 
-router.post('/delete', async (req, res, next) => {
+router.post("/delete", async (req, res, next) => {
   try {
     const { id } = req.params;
     await User.findByIdAndRemove(id);
-    res.redirect('/');
+    res.redirect("/");
   } catch (error) {
     console.log(error);
     next(error);
@@ -219,29 +246,41 @@ router.post('/delete', async (req, res, next) => {
 
 /* _____________________________________ EDIT CARD _____________________________________________ */
 
-
-router.get("/edit-card/:id", (req, res, next) => {
+router.get("/edit-card/:id", async (req, res, next) => {
   try {
-    const cardId = req.params.id
-    res.render("auth/edit-card", {cardId} )
-   } catch (error) {
+    const cardId = req.params.id;
+    const thisCard = await Countries.findById(cardId);
+
+    let departDate = thisCard.departureDate;
+    departDate.value = thisCard.departureDate.toISOString().substr(0, 10);
+
+    let arrivDate = thisCard.arrivalDate;
+    arrivDate.value = thisCard.arrivalDate.toISOString().substr(0, 10);
+
+    res.render("auth/edit-card", { thisCard, cardId, departDate, arrivDate });
+  } catch (error) {
     console.log(error);
     next(error);
-   }
+  }
 });
 
 router.post("/edit-card/:id", async (req, res, next) => {
   try {
-    const { arrivalDate ,departureDate, notes, favorites, cities /* photos */ } = req.body;
-    const cardId = req.params.id
+    const {
+      arrivalDate,
+      departureDate,
+      notes,
+      favorites,
+      cities /* photos */,
+    } = req.body;
+    const cardId = req.params.id;
 
-/*     let imageUrl;
+    /*     let imageUrl;
     if (req.file) {
       imageUrl = req.file.path;
     } else {
       imageUrl = currentImage;
     } */
-
 
     await Countries.findByIdAndUpdate(cardId, {
       arrivalDate,
@@ -258,28 +297,41 @@ router.post("/edit-card/:id", async (req, res, next) => {
   }
 });
 
-router.get('/del/:id', async (req, res, next) => {
+router.get("/del/:id", async (req, res, next) => {
   try {
-    const  id  = req.params.id
-    const userId = req.session.user._id
+    const id = req.params.id;
+    const userId = req.session.user._id;
     await Countries.findByIdAndRemove(id);
-  res.redirect(`/auth/profile`); 
+    res.redirect(`/auth/profile`);
   } catch (error) {
     console.log(error);
     next(error);
   }
 });
 
-
 /* _____________________________________ CARD DETAILS _____________________________________________ */
 
 router.get("/card-details/:id", async (req, res, next) => {
   try {
-    const cardId = req.params.id
+    const cardId = req.params.id;
     const card = await Countries.findById(cardId);
-    res.render("auth/card-details", card)
-   } catch (error) {
+
+    const departDate = card.departureDate.toLocaleDateString("en-uk", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    const arrivDate = card.arrivalDate.toLocaleDateString("en-uk", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    res.render("auth/card-details", { card, departDate, arrivDate });
+  } catch (error) {
     console.log(error);
     next(error);
-   }
+  }
 });
