@@ -256,3 +256,23 @@ hr {
   box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
 }
+
+.buttonCard {
+  padding: 0.5rem 1.5rem;
+  background-color: white;
+  color: black;
+  border: none;
+  font-family: "Basier Square Narrow", sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  font-weight: lighter;
+  box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
+}
+
+.spanButtonsCards {
+  margin: 1rem;
+  font-size: 0.8rem;
+  background-color: none;
+  display:inline
+  }
