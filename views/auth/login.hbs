@@ -1,24 +1,58 @@
-<div id="login-form">
-  <h2>Log In</h2>
-  <form action="/auth/login" method="POST">
+<br /><br /><br />
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
+<div class="loginPage">
+  <br />
+  <h1>TRACE YOUR ROAD</h1>
+  <br />
+  <br />
+  <h2>LOGIN</h2>
+  <br />
+  <div id="login-form">
+    <form class="form" action="/auth/login" method="POST">
+      <div>
+        <label style="width: 100%;">
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="email"
+              name="email"
+              placeholder="EMAIL"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <br />
+      <div>
+        <label style="width: 100%">
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="password"
+              name="password"
+              placeholder="PASSWORD"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <br />
+      <br />
+      <div class="button">
+        <button class="buttonLogin" type="submit">LOGIN</button>
+      </div>
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
+  <br />
+</div>
 
-    <label> Email
-      <input type="email" name="email" placeholder="Your email" />
-    </label>
+<div class="button">
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
+  <a class="buttonHomepage" href="/">BACK TO HOMEPAGE</a>
 
-    <button type="submit">Log In</button>
-
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
 </div>

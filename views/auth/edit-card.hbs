@@ -1,0 +1,50 @@
+<br><br>
+
+<div  class="loginPage">
+  <h1 style="padding-top:1.1rem; padding-bottom:0.5rem">COLOR YOUR ROAD</h1>
+  <br>
+<div class="card">  
+  <div class="container">
+  <div id="card-form">  
+  <h3>Edit Card</h3>
+  <hr class="cardHr"> 
+  <form action="/auth/edit-card/{{cardId}}" method="post">
+  <label>NOTES:<br>
+        <input type="notes" name="notes" placeholder="Write here some notes of your trip" />
+      </label>
+  <hr class="cardHr">
+      <label>HIGHLIGHT:<br>
+        <input type="favorites" name="favorites" placeholder="Write here the best of the trip" />
+      </label>
+  <hr class="cardHr">      
+      <label>CITIES I HAVE BEEN:<br>
+        <input type="cities" name="cities" placeholder="Visited cities" />
+      </label>
+  <hr class="cardHr"> 
+            <label>Arrival Date:
+        <input type="date" name="arrivalDate" placeholder="Arrival Date" />
+      </label>
+  <hr class="cardHr">
+          <label>Departure Date:
+        <input type="date" name="departureDate" placeholder="Departure Date" />
+      </label>
+  <hr class="cardHr">   
+  <button type="submit" >UPDATE</button>
+    </form>
+  </div>
+  </div>
+</div>
+<br>
+      <div class="button">
+         <form class="buttonEdit" action="/auth/profile" >
+        <button class="textButtonEdit" type="submit">BACK TO PROFILE</button>
+      </form>
+      </div>
+</div>
+
+
+
+
+
+
+

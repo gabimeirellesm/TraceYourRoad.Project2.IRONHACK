@@ -1,24 +1,111 @@
-<div id="form">
-  <h2>Sign Up</h2>
-  <form action="/auth/signup" method="POST">
+<div class="loginPage">
+  <br />
+  <br />
+  <h1>TRACE YOUR ROAD</h1>
+  <br />
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
+  <h2>SIGN UP</h2>
+  <br />
+  <div id="login-form" style="margin-left: 0">
+    <form action="/auth/signup" method="POST">
+      <div>
+        <label style="width: 100%;  ">
+          <div style="margin-left: 0">
+            <br />
+            <input
+              class="labelLogin"
+              type="text"
+              name="firstName"
+              placeholder="FIRST NAME"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <div>
+        <label style="width: 100%">
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="text"
+              name="lastName"
+              placeholder="LAST NAME"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
 
-    <label> Email
-      <input type="email" name="email" placeholder="Your email" />
-    </label>
+      <div>
+        <label style="width: 100%">
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="email"
+              name="email"
+              placeholder="EMAIL"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <div>
+        <label style="width: 100%">
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="password"
+              name="password"
+              placeholder="PASSWORD"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <div>
+        <label style="width: 100%">
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="text"
+              name="countryOfBirth"
+              placeholder="COUNTRY OF BIRTH"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <div>
+        <label style="width: 100%">
+          <div>
+            <br />
+            <input
+              class="labelLogin"
+              type="text"
+              name="residence"
+              placeholder="RESIDENCE"
+            />
+          </div>
+        </label>
+        <hr />
+      </div>
+      <br />
+      <br />
+      <div class="button">
+        <button class="buttonLogin" type="submit">SIGN UP</button>
+      </div>
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+  </div>
+  <br />
+</div>
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
-
-    <button type="submit">Sign Up</button>
-
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
+<div class="button">
+  <a class="buttonHomepage" href="/">BACK TO HOMEPAGE</a>
 </div>

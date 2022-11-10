@@ -1,0 +1,84 @@
+{{! { number of countries, percentage visited, countries list, user information } }}
+
+<nav class="navbar navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <h3 style="color: white;">Welcome {{user.firstName}} {{user.lastName}}</h3>
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">COLOR YOUR ROAD</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/auth/edit-profile">Edit Profile</a>
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" href="/">Logout</a>
+          </li>
+          <hr>
+      <li>
+            <form action="/auth/create-card" method="post">
+            <select name="countries" >
+            {{#each countries}}
+            <option value="{{name.common}}">{{name.common}}</option>
+            {{/each}} 
+            </select>
+            <button type="submit">Add Country</button>
+            <hr>
+         </form>
+            </li>
+           </ul>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{{!-- ________________________ CARD ________________________________ --}}
+
+
+<div  class="row" "divpadding">
+  {{#each user.createdCountries}}
+  <div class="col-sm-3">
+<div class="card" style="width: 18rem;">
+  <img src="{{flagCountry}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{countryName}} </h5> 
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">CAPITAL: {{capital}}</li>
+    <li class="list-group-item">OFFICIAL LANGUAGE: 
+      {{#each language}}
+      {{this}}
+      {{/each}}
+    </li>
+    <li class="list-group-item">CURRENCY: {{currency}} </li>
+  </ul>
+
+<form  action="/auth/edit-card/{{_id}}">
+  <div class="card-body">
+    <span class="spanButtons">
+    <button class="card-link">EDIT CARD</a>
+    </span>
+ 
+  </form>
+
+<FORM action="/auth/card-details/{{_id}}">
+ 
+  <span class="spanButtons">
+  <button class="card-link">MORE DETAILS</a>
+  </span>
+  </div>
+</FORM>
+
+  </div>
+ {{/each}}
+</div>
+
