@@ -3,6 +3,8 @@ body {
   padding: 0;
 }
 
+/* _________NAV___________ */
+
 .navIndex {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -45,6 +47,8 @@ body {
   margin-top: 0;
   padding-top: 0;
 }
+
+/* ____________LOGIN AND SIGNUP__________ */
 
 #login-form {
   display: flex;
@@ -115,6 +119,31 @@ h2 {
   align-items: center;
 }
 
+.card {
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+  transition: 0.3s;
+  width: 80%;
+  justify-content: center;
+  display: flex;
+  position: static;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+h3 {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: lighter;
+}
+
 .spanButtons {
   margin: 1rem;
   font-size: 0.8rem;
@@ -137,7 +166,25 @@ hr {
   text-align: center;
 }
 
-.card {
+.container {
+  padding: 2px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  padding: 2px 16px;
+  display: flex;
+  justify-content: center;
+}
+
+#card-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* card {
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
   transition: 0.3s;
   width: 80%;
@@ -149,39 +196,7 @@ hr {
   margin-right: auto;
   margin-top: auto;
   margin-bottom: auto;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-}
-
-.container {
-  padding: 2px 16px;
-  display: flex;
-  justify-content: center;
-}
-
-.container img{
-  width: 90%
-}
-
-#card-form {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.card p{
-  text-align: left;
-  margin-top: auto;
-  margin-bottom: auto;
-  display: flex;
-  padding: 0.5rem;
-  font-weight: lighter;
-  font-family: "Basier Square Narrow", sans-serif;
-  margin-left: 0;
-  padding-left: 1rem;
-}
+} */
 
 #card-img {
   display: flex;
@@ -197,19 +212,28 @@ hr {
   color: black;
 }
 
-.loginPage h1{
+.loginPage h1 {
   font-family: "Tilson", sans-serif;
 }
 
-.spanCard{
-  color:rgb(89, 89, 89); 
+.spanCard {
+  color: rgb(89, 89, 89);
   font-weight: lighter;
   margin-left: 0.4rem;
 }
 
-h3 {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
+.loginPage h1 {
+  font-family: "Tilson", sans-serif;
+}
+
+.card p {
+  text-align: left;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  padding: 0.5rem;
   font-weight: lighter;
+  font-family: "Basier Square Narrow", sans-serif;
+  margin-left: 0;
+  padding-left: 1rem;
 }
