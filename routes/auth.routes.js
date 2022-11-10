@@ -120,7 +120,7 @@ router.get("/logout", isLoggedIn, (req, res) => {
       return;
     }
 
-    res.redirect("login");
+    res.redirect("/");
   });
 });
 
@@ -128,7 +128,7 @@ module.exports = router;
 
 /* _____________________________________ PROFILE _____________________________________________ */
 
-router.get("/profile", async (req, res) => {
+router.get("/profile", isLoggedIn, async (req, res) => {
   const userId = req.session.user._id;
 
   const response = await axios.get("https://restcountries.com/v3.1/all");

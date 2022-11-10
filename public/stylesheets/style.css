@@ -98,9 +98,9 @@ h2 {
   border: none;
   width: 100%;
   font-size: 0.8rem;
-  font-weight: bolder;
+  font-weight: light;
   text-decoration: underline;
-  color: rgb(165, 36, 36);
+  color: black;
 }
 
 .buttonHomepage:hover {
