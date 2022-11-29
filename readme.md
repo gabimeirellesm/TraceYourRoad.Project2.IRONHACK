@@ -2,7 +2,7 @@
 
 <!-- TRACKING TRAVELS -->
 
-COLOR YOUR ROAD 
+TRACE YOUR ROAD 
 <br>
 
 ## Description
@@ -101,7 +101,7 @@ The url to your repository and to your deployed project
 
 [Repository Link](https://github.com/gabimeirellesm/Project2)
 
-[Deploy Link]()
+[Deploy Link](https://project2gabi-nat.herokuapp.com/)
 
 <br>
 

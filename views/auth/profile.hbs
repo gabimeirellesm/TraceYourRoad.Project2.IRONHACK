@@ -1,113 +1,90 @@
-<nav class="navbar navbar-dark bg-dark fixed-top">
-  <div class="container-fluid" style="">
-    <h5 style="color: white; font-size:1.8rem; font-weight:bold;">TRACE YOUR ROAD</h5>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<nav class="nav">
+<div class="containerNav">
+    <div>
+    <h3>TRACE YOUR<br /> ROAD</h3>
+    </div>
+    <div class="elementsNav">
+      <ul>
+                <li><a href="/">HOMEPAGE</a></li>
+                <li><a href="/auth/edit-profile">EDIT PROFILE</a></li>
+                <li><a href="/auth/logout" style="color:grey">LOGOUT</a></li>      
+      </ul>
+    </div>
 
-    <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="margin-left: auto;
-    margin-right: auto";>TRACE YOUR ROAD</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <hr class="navHr">
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a style="font-size: 1.2rem; color:white" class="nav-link active" aria-current="page" href="/auth/edit-profile">EDIT PROFILE</a>
-          </li>
-          <hr class="navHr">
-                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a style="font-size: 1.2rem; color:white" class="nav-link active" aria-current="page" href="/">HOMEPAGE</a>
-          </li>
-          <hr class="navHr">
-      <li>
-            <form action="/auth/create-card" method="post">
-            <select class="inputNav" name="countries" >
-            {{#each countries}}
-            <option style="margin-left: auto;
-    margin-right: auto;" value="{{name.common}}">{{name.common}}</option>
-            {{/each}} 
-            </select>
-            <button class="buttonNav" type="submit">ADD COUNTRY</button>
-            <hr class="navHr">
-         </form>
-            </li>
-           </ul>
-         <li class="nav-item">
-            <a class="nav-link" href="/auth/logout">LOGOUT</a>
-          </li>
-          <hr class="navHr">
+</div>
+<div class="formProfile">
+      <form action="/auth/create-card" method="post">
+                <select style="color:grey  border-radius: 0;" name="countries" >
+                {{#each countries}}
+                <option value="{{name.common}}">{{name.common}}</option>
+                {{/each}} 
+                </select>
+                <button  class="textButtonEdit2" type="submit">ADD COUNTRY</button>
+      </form>
+</div>
 </nav>
-<br>
-<br>
-<br>
+
+<h4 class="title">COUNTRIES VISITED</h4>
 <br>
 
-{{!-- ________________________ CARD ________________________________ --}}
-
-<div  class="row" "divpadding">
-  <div class="col-sm-3">
-<div class="card" style="width: 18rem;">
-  <img  src="/images/ok-fococlipping-standard.png" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">   WELCOME</h5> 
-    <h5 class="card-title"> {{user.firstName}} {{user.lastName}}</h5> 
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">BORN IN:  {{user.countryOfBirth}} </li>
-    <li class="list-group-item">RESIDENCE: {{user.residence}}
-    </li>
-    <li><p style="text-align:center">COUNTRIES VISITED: {{numbCountries}}</p></li>
-<li><p style="text-align:center; color:grey;">YOU KNOW {{percentCountries}}% OF THE WORLD</p></li>
-
+<div class="teste">
+<div class="cardCountries">
+  <div>
+  <img src="/images/map.png" alt="...">
+    <hr>
+    <h4>WELCOME {{user.firstName}} {{user.lastName}}</h4>
+    <hr> 
+  <ul>
+    <li class="special">COUNTRIES VISITED: {{numbCountries}}</li><hr>
+    <li class="special">YOU KNOW {{percentCountries}}% OF THE WORLD</li><hr>
+    <li>BORN IN:  {{user.countryOfBirth}} </li><hr>
+    <li>RESIDENCE: {{user.residence}}</li><hr>
   </ul>
-</div>
-</div>
-</div>
-
-
+  <form  action="/auth/edit-profile">
+    <button class="cardButton">EDIT PROFILE</button>
+</form>
+  </div>
+</div> 
 <br>
-<div  class="row" "divpadding">
-  {{#each user.createdCountries}}
-  <div class="col-sm-3">
-<div class="card" style="width: 18rem;">
-  <img src="{{flagCountry}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{countryName}} </h5> 
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">CAPITAL: {{capital}}</li>
-    <li class="list-group-item">OFFICIAL LANGUAGE: 
-      {{#each language}}
-      {{this}}
-      {{/each}}
-    </li>
-    <li class="list-group-item">CURRENCY: {{currency}} </li>
+
+{{#each user.createdCountries}}
+<div class="cardCountries"> 
+  <div>
+  <img src="{{flagCountry}}" alt="contry flag">
+  <hr>
+  <h4>{{countryName}}</h4>
+  <hr>
+  <ul>
+        <li>CAPITAL: {{capital}}</li>
+        <hr>
+        <li>OFFICIAL LANGUAGE: 
+          {{#each language}}
+          {{this}}
+          {{/each}}
+        </li>
+        <hr>
+        <li>CURRENCY: {{currency}} </li>
+        <hr>
   </ul>
-
-<form  action="/auth/edit-card/{{_id}}">
-  <div class="card-body">
-
-    <span class="spanButtonsCards">
-    {{!-- <button style="height:2.35rem" class="buttonCard buttonCardEdit">EDIT CARD</a> --}}
-    </span>
- 
-  </form>
-
-<FORM action="/auth/card-details/{{_id}}">
- 
-  <span class="spanButtonsCards">
-  <button class="buttonCard">MORE DETAILS</a>
-  </span>
-
-  </div>
-</FORM>
-
-  </div>
   <br>
- {{/each}}
+<form  action="/auth/card-details/{{_id}}">
+    <button class="cardButton">MORE DETAILS</button>
+</form>
+
 </div>
+</div>
+<br>
+{{/each}}
+
+</div>
+
+
+
+
+
+
+
+
+
+
 

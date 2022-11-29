@@ -135,7 +135,7 @@ router.get("/profile", isLoggedIn, async (req, res) => {
   const user = await User.findById(userId).populate("createdCountries");
 
   const numbCountries = user.createdCountries.length;
-  const percentCountries = (numbCountries / 195).toFixed(2);
+  const percentCountries = ((numbCountries / 195).toFixed(2))*100;
 
   res.render("auth/profile", {
     user,
@@ -155,11 +155,6 @@ router.post("/create-card", async (req, res, next) => {
     `https://restcountries.com/v3.1/name/${req.body.countries}`
   );
 
-  /*   thisUser.createdCountries.forEach((country) => {
-    if (country.countryName === apiCall.data[0].name.common) {
-      return res.redirect(`/auth/card-details/${country._id}`);
-    }
-  }); */
   let countryNames = [];
   thisUser.createdCountries.forEach((country) => {
     countryNames.push(country.countryName);
@@ -209,22 +204,15 @@ router.get("/edit-profile", async (req, res, next) => {
 });
 
 router.post("/edit-profile", async (req, res, next) => {
-  const { firstName, lastName, countryOfBirth, residence /* currentImage */ } =
+  const { firstName, lastName, countryOfBirth, residence } =
     req.body;
   try {
-    /*     let imageUrl;
-    if (req.file) {
-      imageUrl = req.file.path;
-    } else {
-      imageUrl = currentImage;
-    } */
     const userId = req.session.user._id;
     await User.findByIdAndUpdate(userId, {
       firstName,
       lastName,
       countryOfBirth,
       residence,
-      /* photo */
     });
     res.redirect("/auth/edit-profile");
   } catch (error) {
@@ -271,16 +259,9 @@ router.post("/edit-card/:id", async (req, res, next) => {
       departureDate,
       notes,
       favorites,
-      cities /* photos */,
+      cities,
     } = req.body;
     const cardId = req.params.id;
-
-    /*     let imageUrl;
-    if (req.file) {
-      imageUrl = req.file.path;
-    } else {
-      imageUrl = currentImage;
-    } */
 
     await Countries.findByIdAndUpdate(cardId, {
       arrivalDate,
@@ -288,7 +269,6 @@ router.post("/edit-card/:id", async (req, res, next) => {
       notes,
       favorites,
       cities,
-      /* photo */
     });
     res.redirect(`/auth/card-details/${cardId}`);
   } catch (error) {
