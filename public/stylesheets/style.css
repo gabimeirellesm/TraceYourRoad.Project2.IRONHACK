@@ -6,12 +6,13 @@ body {
 /* _________NAV___________ */
 
 .navIndex {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
   background-color: transparent;
   position: relative;
-  z-index: 2;
   margin-top: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 .elementsNavIndex {
@@ -23,14 +24,15 @@ body {
   display: flex;
   align-items: center;
   margin: 0;
-  padding: 0;
+  padding: 1rem;
   list-style: none;
+  z-index: 1;
 }
 
 .liNavIndex a {
-  padding-right: 10px;
+  padding-right: 2rem;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: "Basier Square Narrow", sans-serif;
   color: black;
   text-align: center;
@@ -38,7 +40,7 @@ body {
 
 .navIndex h3 {
   font-family: "Tilson", sans-serif;
-  font-size: 1.7rem;
+  font-size: 2rem;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -57,7 +59,7 @@ body {
 }
 
 h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: bolder;
   padding-left: 2.5rem;
   padding-top: 2.5rem;
@@ -78,7 +80,7 @@ h2 {
   font-weight: lighter;
 }
 
-.buttonLogin:hover{
+.buttonLogin:hover {
   background-color: #333;
 }
 
@@ -138,7 +140,7 @@ h2 {
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.4);
 }
 
 h3 {
@@ -170,7 +172,7 @@ hr {
   text-align: center;
 }
 
-.textButtonEdit:hover{
+.textButtonEdit:hover {
   background-color: #333;
 }
 
@@ -186,12 +188,12 @@ hr {
   text-align: left;
 }
 
-
 #card-img {
   display: flex;
   flex-direction: column;
   text-align: left;
   align-items: center;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
 }
 
 .cardHr {
@@ -203,6 +205,7 @@ hr {
 
 .loginPage h1 {
   font-family: "Tilson", sans-serif;
+  font-size: 2rem;
 }
 
 .spanCard {
@@ -278,37 +281,37 @@ label {
   font-size: 1.1rem;
 }
 
-h5{
+h5 {
   font-family: "Basier Square Narrow", sans-serif;
   font-weight: lighter;
   font-size: 1.5rem;
 }
 
-.navHr{
+.navHr {
   color: white;
   width: 100%;
   height: 1rem;
 }
 
-nav a{
+nav a {
   font-family: "Basier Square Narrow", sans-serif;
   font-weight: lighter;
   font-size: 1.1rem;
 }
 
-.inputNav{
+.inputNav {
   background-color: transparent;
-    border: none;
-    height: 2.5rem;
-    width: 100%;
-    color: grey;
-    font-size: 1.8rem;
-    font-family: "Basier Square Narrow", sans-serif;
-    margin-left: auto;
-    margin-right: auto;
+  border: none;
+  height: 2.5rem;
+  width: 100%;
+  color: grey;
+  font-size: 1.8rem;
+  font-family: "Basier Square Narrow", sans-serif;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.buttonNav{
+.buttonNav {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -323,36 +326,33 @@ nav a{
   margin-top: 1rem;
 }
 
-.cardsRow{
+.cardsRow {
   width: 100vw;
   display: flex;
 }
 
-.login{
+.login {
   display: flex;
   justify-content: space-evenly;
 }
 
-.signUp{
+.signUp {
   text-decoration: none;
   color: white;
-
-
 }
 
-.signUp:hover{
+.signUp:hover {
   text-decoration: none;
   color: white;
   background-color: #333;
-
 }
 
-.test{
+.test {
   margin-left: 2rem;
   margin-bottom: 1.5rem;
 }
 
-.nav{
+.nav {
   color: black;
   font-family: "Basier Square Narrow", sans-serif;
   margin: 1rem;
@@ -360,49 +360,49 @@ nav a{
   margin-right: 2rem;
 }
 
-.nav a{
+.nav a {
   text-decoration: none;
   color: black;
   margin-right: 1rem;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
-.nav li{
+.nav li {
   list-style: none;
   margin-right: 0.5rem;
 }
 
-.containerNav{
+.containerNav {
   display: flex;
   width: 100%;
   justify-content: space-between;
   margin-top: 1rem;
 }
 
-.nav ul{
+.nav ul {
   display: flex;
 }
 
-.nav hr{
-  color:black
+.nav hr {
+  color: black;
 }
 
-.nav form{
+.nav form {
   display: flex;
 }
 
-.elementsNav{
+.elementsNav {
   display: flex;
   align-items: center;
 }
 
-.nav h3{
+.nav h3 {
   font-family: "Tilson", sans-serif;
-  font-size: 1.7rem;
+  font-size: 2rem;
   margin-left: 2rem;
 }
 
-.formProfile{
+.formProfile {
   display: flex;
   justify-content: flex-end;
   width: 100%;
@@ -419,14 +419,13 @@ nav a{
   font-size: 0.8rem;
 }
 
-.textButtonEdit2:hover{
+.textButtonEdit2:hover {
   background-color: #333;
 }
 
-
-.cardCountries{
+.cardCountries {
   display: flex;
- 
+
   border: none;
   font-family: "Basier Square Narrow", sans-serif;
   font-size: 0.9rem;
@@ -434,26 +433,26 @@ nav a{
   font-weight: lighter;
   box-shadow: rgba(60, 64, 67, 0.5) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
-    width: 18rem;
-    height: 30rem;
-    justify-content: space-between;
+  width: 18rem;
+  height: 30rem;
+  justify-content: space-between;
   margin-left: 2rem;
-  margin-right: 2rem;  
-  margin-bottom: 2rem; 
+  margin-right: 2rem;
+  margin-bottom: 2rem;
 }
 
-.cardCountries h4{
+.cardCountries h4 {
   text-align: center;
-  margin-left:0;
+  margin-left: 0;
   margin-top: 0.5rem;
 }
 
-.cardCountries form{
+.cardCountries form {
   text-align: center;
   margin-top: 2rem;
 }
 
-.cardCountries img{
+.cardCountries img {
   width: 16rem;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -462,14 +461,14 @@ nav a{
   margin-bottom: 1rem;
 }
 
-.cardCountries li{
+.cardCountries li {
   list-style: none;
   margin-bottom: 0.5rem;
-  margin-top:0.5rem;
+  margin-top: 0.5rem;
   margin-left: 0.5rem;
 }
 
-.cardCountries ul{
+.cardCountries ul {
   padding-left: 0;
 }
 
@@ -486,25 +485,33 @@ nav a{
     rgba(60, 64, 67, 0.3) 0px 1px 3px 1px;
 }
 
-.teste{
+.teste {
   display: flex;
   flex-wrap: wrap;
   width: 100vw;
 }
 
-.title{
+.cardCountries:hover {
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.4);
+}
+
+.title {
   display: flex;
   justify-content: center;
   font-family: "Basier Square Narrow", sans-serif;
   color: grey;
 }
 
-.special{
+.special {
   color: rgb(165, 36, 36);
   font-size: 1rem;
 }
 
-
-.imgHome{
+.imgHome {
   width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }

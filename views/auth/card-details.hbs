@@ -5,7 +5,11 @@
   <div class="card">
     <div class="container">
       <div id="card-form">
-        <img style="margin: 1rem 1rem; width:90%" src="{{card.flagCountry}}" />
+        <img
+          style="margin: 1rem 1rem; width:90%"
+          src="{{card.flagCountry}}"
+          alt="img of the country flag"
+        />
         <h3 style="text-align: center"> {{card.countryName}}</h3>
         <hr class="cardHr" />
         <p>Capital:<span class="spanCard">{{card.capital}}</span></p>
@@ -37,18 +41,24 @@
     </form>
   </div>
 
-<form  action="/auth/edit-card/{{card._id}}">
-  <div class="card-body">
+  <form action="/auth/edit-card/{{card._id}}">
+    <div class="card-body">
 
-   
-    <button style="height:2.35rem; width:19.4rem; margin-left:0.75rem" class="buttonCard buttonCardEdit">EDIT CARD</a>
-   
- 
+      <button
+        style="height:2.35rem; width:19.4rem; margin-left:0.75rem"
+        class="buttonCard buttonCardEdit"
+      >EDIT CARD</button>
+
+    </div>
   </form>
-<br>
-<br>
+  <br />
+  <br />
 
   <div class="button">
-    <a style="color:rgb(165, 36, 36);  font-weight: bolder" class="buttonHomepage" href="/auth/del/{{card._id}}">DELETE</a>
+    <a
+      style="color:rgb(165, 36, 36);  font-weight: bolder"
+      class="buttonHomepage"
+      href="/auth/del/{{card._id}}"
+    >DELETE</a>
   </div>
 </div>
